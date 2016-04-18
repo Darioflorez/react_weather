@@ -21,7 +21,7 @@ export default class SearchBar extends Component {
     return (
       <View style={styles.searchBar}>
         <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          style={{height: 40, borderColor: 'gray', borderWidth: 1, padding: 5, borderRadius:5,}}
           placeholder={'search'}
           onChangeText={(text) => this.setState({text})}
           value={this.state.text}
@@ -38,6 +38,6 @@ export default class SearchBar extends Component {
 
 const styles = StyleSheet.create({
   searchBar: {
-    backgroundColor: '#cefcba'
+    padding:10,
   }
 });
