@@ -20,8 +20,8 @@ export default class WeatherDetail extends React.Component {
         initialRegion={{
           latitude: 59.3293,
           longitude: 18.0686,
-          latitudeDelta: 0.3,
-          longitudeDelta: 0.3,
+          latitudeDelta: 0.1,
+          longitudeDelta: 0.1,
         }}/>;
     }
     else{

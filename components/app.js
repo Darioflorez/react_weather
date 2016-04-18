@@ -19,8 +19,17 @@ export default class App extends React.Component {
       return (<Login navigator={navigator}/>); 
     }
     if(route.id === 'home'){
-      return (<WeatherDetail />);
+      return (<View style={{flex:1}}>
+                <SearchBar />
+                <CurrentLocation navigator={navigator}/>
+              </View>);
     }
+    if(route.id === 'detail'){
+      return (<WeatherDetail  navigator={navigator}/>);
+    }
+  }
+  configureScene(route, routeStack){
+    return Navigator.SceneConfigs.HorizontalSwipeJump
   }
   render() {
     return (
@@ -28,6 +37,7 @@ export default class App extends React.Component {
         ref='app'
         initialRoute={{id: 'login'}}
         renderScene={this._renderScene}
+        configureScene={ this.configureScene }
       />
     );
   }

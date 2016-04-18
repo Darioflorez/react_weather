@@ -28,13 +28,14 @@ export default class CurrentLocation extends Component {
       }),
     }
   };
-
   _currentLocationPress(){
     console.log('current location pressed!');
+    this.props.navigator.push({id: 'detail'})
   }
 
   _pressRow(rowID: number){
     console.log(rowID);
+    this.props.navigator.push({id: 'detail'})
   }
 
   _renderFavourites(rowData: string, sectionID: number, rowID: number){

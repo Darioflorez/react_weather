@@ -20,11 +20,9 @@ export default class LoginForm extends React.Component {
         <Image resizeMode={'contain'} style={styles.logo} source={require('../images/app_logo.png')} />
       </View>
       <View style={styles.inputView}>
-        <TouchableOpacity>
-          <Icon.Button name="facebook" backgroundColor="#3b5998">
-            <Text style={{fontFamily: 'Arial', fontSize: 15}}>Login with Facebook</Text>
-          </Icon.Button>
-        </TouchableOpacity>
+        <Icon.Button onPress={this.props.onLogin} name="facebook" backgroundColor="#3b5998">
+          <Text style={{fontFamily: 'Arial', fontSize: 15}}>Login with Facebook</Text>
+        </Icon.Button>
         <TouchableOpacity style={styles.btn} onPress={this.props.onLogin}>
           <Text>Login without Facebook</Text>
         </TouchableOpacity>

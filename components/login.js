@@ -16,7 +16,7 @@ export default class Login extends React.Component {
     this._onLogin = this._onLogin.bind(this);
   }
   _onLogin() {
-    this.props.navigator.push({id: 'home'});
+    this.props.navigator.replace({id: 'home'});
   }
   render() {
     return (
