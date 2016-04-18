@@ -1,7 +1,6 @@
 'use strict';
 
 import React, {
-  PropTypes,
   View,
   Text,
   Image,
@@ -11,6 +10,8 @@ import React, {
 
 import Login from './login'
 import WeatherDetail from './weatherDetail'
+import SearchBar from './search';
+import CurrentLocation from './currentLocation'
 
 export default class App extends React.Component {
   _renderScene(route, navigator){
