@@ -64,7 +64,7 @@ export default class CurrentLocation extends Component {
       <View style={styles.container}>
 
         <TouchableOpacity style={styles.currentLocation} onPress={this._currentLocationPress}>
-          <Text style={{fontSize: 30, padding: 10}}>Stockholm</Text>
+          <Text style={{fontSize: 30}}>Stockholm</Text>
           <View style={styles.currentView}>
             <Text style={{fontSize: 60}}>13°C</Text>
             <Icon style={styles.backBtn} name="cloud" size={100} />
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
       //backgroundColor: '#06D6A0',
       borderColor: 'black',
       borderWidth: 1,
+      padding: 10,
     },
     currentView:{
       flex:1,
