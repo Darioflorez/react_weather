@@ -12,7 +12,9 @@ import React, {
   Image,
 } from 'react-native';
 
-var Icon = require('react-native-vector-icons/FontAwesome')
+import { styles } from '../styles/currentLocation'
+
+let Icon = require('react-native-vector-icons/FontAwesome')
 
 const {height, width} = Dimensions.get('window');
 
@@ -64,7 +66,7 @@ export default class CurrentLocation extends Component {
       <View style={styles.container}>
 
         <TouchableOpacity style={styles.currentLocation} onPress={this._currentLocationPress}>
-          <Text style={{fontSize: 30}}>Stockholm</Text>
+          <Text style={styles.header}>Stockholm</Text>
           <View style={styles.currentView}>
             <Text style={{fontSize: 60}}>13°C</Text>
             <Icon style={styles.backBtn} name="cloud" size={100} />
@@ -79,39 +81,3 @@ export default class CurrentLocation extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: 'column',
-      margin: 10,
-    },
-    currentLocation: {
-      flex: 0.4,
-      //backgroundColor: '#06D6A0',
-      borderColor: 'black',
-      borderWidth: 1,
-      padding: 10,
-    },
-    currentView:{
-      flex:1,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      padding: 20,
-    },
-    list: {
-      marginTop: 10,
-      /*borderColor: '#000000',
-      borderWidth: 1,
-      backgroundColor: '#ccfd4d',*/
-    },
-    item: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      borderBottomColor: '#000000',
-      borderBottomWidth: 1,
-      //backgroundColor: '#d3751d',
-    }
-});

@@ -32,18 +32,12 @@ export default class WeatherDetail extends React.Component {
                  />;
     }
     return (
-      <View style={styles.container}>
+      <View style={{flex:1}}>
         { output }
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container:{
-    flex:1,
-  },
-})
 
 const chartData = [
     {

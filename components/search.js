@@ -8,6 +8,8 @@ import React, {
   Text
 } from 'react-native';
 
+import { styles } from '../styles/search'
+
 export default class SearchBar extends Component {
 
   constructor(props){
@@ -32,7 +34,7 @@ export default class SearchBar extends Component {
     return (
       <View style={styles.searchBar}>
         <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1, padding: 5, borderRadius:5,}}
+          style={styles.input}
           placeholder={'search'}
           onChangeText={(text) => this._onChangeText(text)}
           value={this.state.text}
@@ -46,9 +48,3 @@ export default class SearchBar extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  searchBar: {
-    padding:10,
-  }
-});
