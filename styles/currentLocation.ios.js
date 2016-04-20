@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'column',
-      margin: 10,
+
     },
     header: { 
       fontSize: 30,
@@ -13,8 +13,8 @@ export const styles = StyleSheet.create({
     },
     currentLocation: {
       flex: 0.4,
-      borderColor: 'black',
-      borderWidth: 1,
+      borderBottomWidth: 1,
+      borderBottomColor: '#C7C7CC',
     },
     currentView:{
       flex:1,
@@ -24,13 +24,13 @@ export const styles = StyleSheet.create({
       padding: 20,
     },
     list: {
-      marginTop: 10,
+
     },
     item: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      borderBottomColor: '#000000',
       borderBottomWidth: 1,
+      borderBottomColor: '#C7C7CC',
     }
 });
