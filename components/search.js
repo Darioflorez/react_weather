@@ -11,6 +11,8 @@ import React, {
 import { styles } from '../styles/search'
 import { fetchWeather } from '../js/fetchData';
 
+var Icon = require('react-native-vector-icons/Ionicons')
+
 export default class SearchBar extends Component {
 
   constructor(props){
@@ -57,9 +59,7 @@ export default class SearchBar extends Component {
           maxLength={12}
           onSubmitEditing={(text) => {}}
           />
-        <Text>
-          {this.state.text}
-        </Text>
+          <Icon style={{paddingLeft: 5}} name="ios-search" size={25} color="blue"/>
       </View>
     );
   }

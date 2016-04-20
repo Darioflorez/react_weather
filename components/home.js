@@ -67,7 +67,7 @@ export default class Home extends Component {
   render() {
     let output;
     this.state.listLength >= 1 ? 
-    output = <SearchResult data={this.state.list}/> :
+    output = <SearchResult data={this.state.list} resetList={this._resetList} navigator={this.props.navigator}/> :
     output = <CurrentLocation navigator={this.props.navigator}
           location={this.state.location}
           />;

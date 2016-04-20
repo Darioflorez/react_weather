@@ -37,7 +37,7 @@ export default class CurrentLocation extends Component {
   _currentLocationPress(){
     //console.log('current location pressed!');
     fetchWeather('mad');
-    //this.props.navigator.push({id: 'detail'})
+    this.props.navigator.push({id: 'detail'})
   }
 
   _pressRow(rowID: number){
