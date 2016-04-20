@@ -25,7 +25,7 @@ export default class WeatherDetail extends React.Component {
         }}/>;
     }
     else{
-      output = <RNChart style={{flex:1}}
+      output = <RNChart style={{flex:1, marginTop: 40,}}
                     chartData={chartData}
                     verticalGridStep={5}
                     xLabels={xLabels}
