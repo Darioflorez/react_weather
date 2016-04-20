@@ -5,7 +5,8 @@ import React, {
   StyleSheet,
   View,
   TextInput,
-  Text
+  Text,
+  TouchableOpacity,
 } from 'react-native';
 
 import { styles } from '../styles/search'
@@ -59,7 +60,9 @@ export default class SearchBar extends Component {
           maxLength={12}
           onSubmitEditing={(text) => {}}
           />
-          <Icon style={{paddingLeft: 5}} name="ios-search" size={25} color="blue"/>
+          <TouchableOpacity onPress={this.props.showProfile}>
+            <Icon name="ios-person" size={30} color="#007AFF"/>
+          </TouchableOpacity>
       </View>
     );
   }

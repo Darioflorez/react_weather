@@ -5,6 +5,7 @@ import React, {
   StyleSheet,
   View,
   ListView,
+  Modal,
   Text,
 } from 'react-native';
 
@@ -15,6 +16,7 @@ import { fetchWeather } from '../js/fetchData';
 import SearchBar from './search';
 import SearchResult from './searchResult';
 import CurrentLocation from './currentLocation';
+import Profile from './profile';
 
 
 // Data structures
@@ -34,10 +36,19 @@ export default class Home extends Component {
 
   constructor(props){
     super(props);
-    this.state = ({ location: location, list: [], listLength: 0});
+    this.state = ({ 
+      location: location,
+      list: [],
+      listLength: 0,
+      animated: true,
+      modalVisible: false,
+      transparent: true,
+    });
     this._fetchWeather = this._fetchWeather.bind(this);
     this._setList = this._setList.bind(this);
     this._resetList = this._resetList.bind(this);
+    this._setModalVisible = this._setModalVisible.bind(this);
+    this._onLogout = this._onLogout.bind(this);
   };
   
   _setList(list){
@@ -63,7 +74,14 @@ export default class Home extends Component {
     // Fetch weather for current location before rendering this Screen
     this._fetchWeather("alicante");
   }
-
+  _setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+  _onLogout(){
+    console.log("logout!")
+    this.setState({modalVisible: false});
+    this.props.navigator.replace({id: 'login'})
+  }
   render() {
     let output;
     this.state.listLength >= 1 ? 
@@ -74,8 +92,15 @@ export default class Home extends Component {
     return (
       <View
         style={{flex:1}}>
-        <SearchBar setList={this._setList} resetList={this._resetList}/>
+        <SearchBar showProfile={() => this._setModalVisible(true)} setList={this._setList} resetList={this._resetList}/>
         { output }
+        <Modal
+          animated={this.state.animated}
+          transparent={this.state.transparent}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {this._setModalVisible(false)}}>
+          <Profile onLogout={() => this._onLogout} onClose={() => this._setModalVisible(false)}/>
+        </Modal>
       </View>
     );
   }

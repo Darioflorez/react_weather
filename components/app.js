@@ -33,7 +33,7 @@ export default class App extends React.Component {
       
       <Navigator
         ref='app'
-        initialRoute={{id: 'login'}}
+        initialRoute={{id: 'home'}}
         renderScene={this._renderScene}
         configureScene={ this.configureScene }
       />
