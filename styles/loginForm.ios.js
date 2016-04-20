@@ -25,14 +25,16 @@ export const styles = StyleSheet.create({
     marginTop: 25,
     padding: 10,
     borderRadius: 5,
-    borderColor: 'black',
+    borderColor: 'white',
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    
   },
   btnLabel: {
     fontFamily: 'Arial',
     fontSize: 15,
+    color: 'white',
   },
   logoView:{
     flex: 0.5
