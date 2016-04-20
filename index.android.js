@@ -9,7 +9,6 @@ import React, {
 } from 'react-native';
 
 import App from './components/app';
-import SearchBar from './components/search';
 
 class react_weather extends Component {
   render() {

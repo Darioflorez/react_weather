@@ -12,9 +12,10 @@ import React, {
   Image,
 } from 'react-native';
 
-import { styles } from '../styles/currentLocation'
+import { styles } from '../styles/currentLocation';
+import { fetchWeather } from '../js/fetchData';
 
-let Icon = require('react-native-vector-icons/FontAwesome')
+let Icon = require('react-native-vector-icons/FontAwesome');
 
 const {height, width} = Dimensions.get('window');
 
@@ -35,7 +36,8 @@ export default class CurrentLocation extends Component {
   };
   _currentLocationPress(){
     //console.log('current location pressed!');
-    this.props.navigator.push({id: 'detail'})
+    fetchWeather('mad');
+    //this.props.navigator.push({id: 'detail'})
   }
 
   _pressRow(rowID: number){
@@ -66,9 +68,9 @@ export default class CurrentLocation extends Component {
       <View style={styles.container}>
 
         <TouchableOpacity style={styles.currentLocation} onPress={this._currentLocationPress}>
-          <Text style={styles.header}>Stockholm</Text>
+          <Text style={styles.header}>{this.props.location.name}</Text>
           <View style={styles.currentView}>
-            <Text style={{fontSize: 60}}>13°C</Text>
+            <Text style={{fontSize: 60}}>{this.props.location.temp}°C</Text>
             <Icon style={styles.backBtn} name="cloud" size={100} />
           </View>
         </TouchableOpacity>

@@ -8,21 +8,18 @@ import React, {
   Navigator,
 } from 'react-native';
 
-import Login from './login'
-import WeatherDetail from './weatherDetail'
-import SearchBar from './search';
-import CurrentLocation from './currentLocation'
+// Screens
+import Login from './login';
+import Home from './home';
+import WeatherDetail from './weatherDetail';
 
 export default class App extends React.Component {
   _renderScene(route, navigator){
     if(route.id === 'login'){
-      return (<Login navigator={navigator}/>); 
+      return (<Login navigator={navigator}/>);
     }
     if(route.id === 'home'){
-      return (<View style={{flex:1}}>
-                <SearchBar />
-                <CurrentLocation navigator={navigator}/>
-              </View>);
+      return (<Home navigator={navigator}/>);
     }
     if(route.id === 'detail'){
       return (<WeatherDetail  navigator={navigator}/>);
@@ -35,7 +32,7 @@ export default class App extends React.Component {
     return (
       <Navigator
         ref='app'
-        initialRoute={{id: 'login'}}
+        initialRoute={{id: 'home'}}
         renderScene={this._renderScene}
         configureScene={ this.configureScene }
       />

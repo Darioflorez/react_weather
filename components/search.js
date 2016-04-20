@@ -9,6 +9,7 @@ import React, {
 } from 'react-native';
 
 import { styles } from '../styles/search'
+import { fetchWeather } from '../js/fetchData';
 
 export default class SearchBar extends Component {
 
@@ -21,9 +22,18 @@ export default class SearchBar extends Component {
     }
   };
 
-  _onChangeText(text: string){
-    console.log(text);
-    this.setState({text})
+  _onChangeText(input: string){
+    this.setState({text: input});
+    if(this.state.text.length > 2){
+        console.log(this.state.text.length);
+        fetchWeather(this.state.text)
+        .then(function(response){
+          // Show this data in a list
+           console.log("Success!", response);
+        }, function(error){
+          console.error("Failed!", error);
+        });
+    }
   }
 
   _onSubmitEditing(){
