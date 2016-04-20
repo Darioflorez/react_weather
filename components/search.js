@@ -18,18 +18,21 @@ export default class SearchBar extends Component {
     // bind functions
     this._onChangeText = this._onChangeText.bind(this);
     this.state = {
-        text: ''
+        text: '',
+        list: [],
     }
   };
 
   _onChangeText(input: string){
     this.setState({text: input});
+    let _this = this;
     if(this.state.text.length > 2){
-        console.log(this.state.text.length);
+        //console.log(this.state.text.length);
         fetchWeather(this.state.text)
         .then(function(response){
           // Show this data in a list
-           console.log("Success!", response);
+           _this.props.setList(response);
+           //console.log("Success!", response);
         }, function(error){
           console.error("Failed!", error);
         });

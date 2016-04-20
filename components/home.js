@@ -3,7 +3,9 @@
 import React, {
   Component,
   StyleSheet,
-  View
+  View,
+  ListView,
+  Text,
 } from 'react-native';
 
 // function for fetching weather
@@ -11,7 +13,9 @@ import { fetchWeather } from '../js/fetchData';
 
 // Child Components
 import SearchBar from './search';
+import SearchResult from './searchResult';
 import CurrentLocation from './currentLocation';
+
 
 // Data structures
 const location = {
@@ -30,12 +34,16 @@ export default class Home extends Component {
 
   constructor(props){
     super(props);
-
+    this.state = ({ location: location, list: [], listLength: 0});
     this._fetchWeather = this._fetchWeather.bind(this);
-    this.state = ({ location: location});
-
+    this._setList = this._setList.bind(this);
+    
   };
-
+  
+  _setList(list){
+    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.setState({list: ds.cloneWithRows(list), listLength: list.length});
+  }
   _fetchWeather(state: string){
     var _this = this;
     fetchWeather(state)
@@ -54,15 +62,17 @@ export default class Home extends Component {
   }
 
   render() {
-    console.log("RENDER");
-    console.log(this.state.location);
+    let output;
+    this.state.listLength >= 1 ? 
+    output = <SearchResult data={this.state.list}/> :
+    output = <CurrentLocation navigator={this.props.navigator}
+          location={this.state.location}
+          />;
     return (
       <View
         style={{flex:1}}>
-        <SearchBar />
-        <CurrentLocation navigator={this.props.navigator}
-          location={this.state.location}
-          />
+        <SearchBar setList={this._setList}/>
+        { output }
       </View>
     );
   }
