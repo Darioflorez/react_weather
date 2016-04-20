@@ -26,6 +26,7 @@ export default class SearchBar extends Component {
   _onChangeText(input: string){
     this.setState({text: input});
     let _this = this;
+    
     if(this.state.text.length > 2){
         //console.log(this.state.text.length);
         fetchWeather(this.state.text)
@@ -36,6 +37,8 @@ export default class SearchBar extends Component {
         }, function(error){
           console.error("Failed!", error);
         });
+    }else{
+      this.props.resetList();
     }
   }
 

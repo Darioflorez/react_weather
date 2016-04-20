@@ -37,12 +37,15 @@ export default class Home extends Component {
     this.state = ({ location: location, list: [], listLength: 0});
     this._fetchWeather = this._fetchWeather.bind(this);
     this._setList = this._setList.bind(this);
-    
+    this._resetList = this._resetList.bind(this);
   };
   
   _setList(list){
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.setState({list: ds.cloneWithRows(list), listLength: list.length});
+  }
+  _resetList(){
+    this.setState({list: [], listLength: 0});
   }
   _fetchWeather(state: string){
     var _this = this;
@@ -71,7 +74,7 @@ export default class Home extends Component {
     return (
       <View
         style={{flex:1}}>
-        <SearchBar setList={this._setList}/>
+        <SearchBar setList={this._setList} resetList={this._resetList}/>
         { output }
       </View>
     );
