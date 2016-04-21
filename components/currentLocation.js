@@ -15,7 +15,7 @@ import React, {
 import { styles } from '../styles/currentLocation';
 import { fetchWeather } from '../js/fetchData';
 
-let Icon = require('react-native-vector-icons/FontAwesome');
+var Icon = require('react-native-vector-icons/Ionicons')
 
 const {height, width} = Dimensions.get('window');
 
@@ -37,7 +37,7 @@ export default class CurrentLocation extends Component {
   _currentLocationPress(){
     //console.log('current location pressed!');
     fetchWeather('mad');
-    //this.props.navigator.push({id: 'detail'})
+    this.props.navigator.push({id: 'detail'})
   }
 
   _pressRow(rowID: number){
@@ -47,12 +47,12 @@ export default class CurrentLocation extends Component {
 
   _renderFavourites(rowData: string, sectionID: number, rowID: number){
     return(
-      <TouchableHighlight onPress={() => this._pressRow(rowID)} underlayColor={'lightgrey'} >
+      <TouchableHighlight onPress={() => this._pressRow(rowID)} underlayColor={'#D1EEFC'} >
         <View style={styles.item}>
           <Text style={{padding: 20 }}>
             {rowData}
           </Text>
-          <Icon style={styles.backBtn} name="chevron-right" size={30} />
+          <Icon style={{paddingRight:10}}name="ios-arrow-right" size={30} color="blue"/>
         </View>
       </TouchableHighlight>
     );

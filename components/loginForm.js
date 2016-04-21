@@ -23,10 +23,10 @@ export default class LoginForm extends React.Component {
         </View>
         <View style={styles.inputView}>
           <Icon.Button onPress={this.props.onLogin} name="facebook" backgroundColor="#3b5998">
-            <Text style={{fontFamily: 'Arial', fontSize: 15}}>Login with Facebook</Text>
+            <Text style={styles.btnLabel}>Login with Facebook</Text>
           </Icon.Button>
           <TouchableOpacity style={styles.btn} onPress={this.props.onLogin}>
-            <Text>Login without Facebook</Text>
+            <Text style={styles.btnLabel}>Login without Facebook</Text>
           </TouchableOpacity>
         </View>
       </View>

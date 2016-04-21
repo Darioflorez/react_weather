@@ -30,12 +30,14 @@ export default class App extends React.Component {
   }
   render() {
     return (
+      
       <Navigator
         ref='app'
         initialRoute={{id: 'home'}}
         renderScene={this._renderScene}
         configureScene={ this.configureScene }
       />
+      
     );
   }
 }

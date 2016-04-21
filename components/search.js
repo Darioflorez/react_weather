@@ -5,11 +5,14 @@ import React, {
   StyleSheet,
   View,
   TextInput,
-  Text
+  Text,
+  TouchableOpacity,
 } from 'react-native';
 
 import { styles } from '../styles/search'
 import { fetchWeather } from '../js/fetchData';
+
+var Icon = require('react-native-vector-icons/Ionicons')
 
 export default class SearchBar extends Component {
 
@@ -18,21 +21,27 @@ export default class SearchBar extends Component {
     // bind functions
     this._onChangeText = this._onChangeText.bind(this);
     this.state = {
-        text: ''
+        text: '',
+        list: [],
     }
   };
 
   _onChangeText(input: string){
     this.setState({text: input});
+    let _this = this;
+    
     if(this.state.text.length > 2){
-        console.log(this.state.text.length);
+        //console.log(this.state.text.length);
         fetchWeather(this.state.text)
         .then(function(response){
           // Show this data in a list
-           console.log("Success!", response);
+           _this.props.setList(response);
+           //console.log("Success!", response);
         }, function(error){
           console.error("Failed!", error);
         });
+    }else{
+      this.props.resetList();
     }
   }
 
@@ -51,9 +60,9 @@ export default class SearchBar extends Component {
           maxLength={12}
           onSubmitEditing={(text) => {}}
           />
-        <Text>
-          {this.state.text}
-        </Text>
+          <TouchableOpacity onPress={this.props.showProfile}>
+            <Icon name="ios-person" size={30} color="#007AFF"/>
+          </TouchableOpacity>
       </View>
     );
   }

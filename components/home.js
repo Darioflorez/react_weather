@@ -3,7 +3,10 @@
 import React, {
   Component,
   StyleSheet,
-  View
+  View,
+  ListView,
+  Modal,
+  Text,
 } from 'react-native';
 
 // function for fetching weather
@@ -11,7 +14,10 @@ import { fetchWeather } from '../js/fetchData';
 
 // Child Components
 import SearchBar from './search';
+import SearchResult from './searchResult';
 import CurrentLocation from './currentLocation';
+import Profile from './profile';
+
 
 // Data structures
 const location = {
@@ -30,11 +36,20 @@ export default class Home extends Component {
 
   constructor(props){
     super(props);
-
+    this.state = ({
+      location: location,
+      list: [],
+      listLength: 0,
+      animated: true,
+      modalVisible: false,
+      transparent: true,
+    });
     this._fetchWeather = this._fetchWeather.bind(this);
     this._getCurrentLocation = this._getCurrentLocation.bind(this);
-    this.state = ({ location: location});
-
+    this._setList = this._setList.bind(this);
+    this._resetList = this._resetList.bind(this);
+    this._setModalVisible = this._setModalVisible.bind(this);
+    this._onLogout = this._onLogout.bind(this);
   };
 
   _getCurrentLocation(){
@@ -42,7 +57,6 @@ export default class Home extends Component {
     return new Promise(function(resolve, reject){
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          //fetchWeather(null,position.coords)
           resolve(position.coords);
         },
         (error) => {
@@ -54,9 +68,16 @@ export default class Home extends Component {
     });
   }
 
+  _setList(list){
+    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.setState({list: ds.cloneWithRows(list), listLength: list.length});
+  }
+
+  _resetList(){
+    this.setState({list: [], listLength: 0});
+  }
+
   _fetchWeather(city: string, coords: Object){
-    console.log("_fetchWeather");
-    console.log(coords);
     var _this = this;
     fetchWeather(city, coords)
     .then((response) => {
@@ -77,22 +98,39 @@ export default class Home extends Component {
       .then((response) => {
         //fetch weather with coordinates
         //_this._fetchWeather("alicante");
+        console.log(response);
         _this._fetchWeather(null, response);
-    }, (error) => {
+    }).catch((error) => {
         console.error("Get current Location", error);
     });
   }
-
+  _setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
+  _onLogout(){
+    console.log("logout!")
+    this.setState({modalVisible: false});
+    this.props.navigator.replace({id: 'login'})
+  }
   render() {
-    console.log("RENDER");
-    console.log(this.state.location);
+    let output;
+    this.state.listLength >= 1 ?
+    output = <SearchResult data={this.state.list} resetList={this._resetList} navigator={this.props.navigator}/> :
+    output = <CurrentLocation navigator={this.props.navigator}
+          location={this.state.location}
+          />;
     return (
       <View
         style={{flex:1}}>
-        <SearchBar />
-        <CurrentLocation navigator={this.props.navigator}
-          location={this.state.location}
-          />
+        <SearchBar showProfile={() => this._setModalVisible(true)} setList={this._setList} resetList={this._resetList}/>
+        { output }
+        <Modal
+          animated={this.state.animated}
+          transparent={this.state.transparent}
+          visible={this.state.modalVisible}
+          onRequestClose={() => {this._setModalVisible(false)}}>
+          <Profile onLogout={() => this._onLogout} onClose={() => this._setModalVisible(false)}/>
+        </Modal>
       </View>
     );
   }

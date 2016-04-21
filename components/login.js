@@ -8,6 +8,7 @@ import React, {
 } from 'react-native';
 
 import LoginForm from './loginForm'
+import LinearGradient from 'react-native-linear-gradient';
 
 export default class Login extends React.Component {
   constructor(props){
@@ -20,7 +21,9 @@ export default class Login extends React.Component {
   }
   render() {
     return (
-      <LoginForm onLogin={this._onLogin}/>
+      <LinearGradient colors={['#EF4DB6', '#5856D6']} style={{flex:1}}>
+        <LoginForm onLogin={this._onLogin}/>
+      </LinearGradient>
     );
   }
 }
