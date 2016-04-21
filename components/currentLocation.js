@@ -14,6 +14,7 @@ import React, {
 
 import { styles } from '../styles/currentLocation';
 import { fetchWeather } from '../js/fetchData';
+import { setData, getAllData, getFavorites } from '../js/storage';
 
 var Icon = require('react-native-vector-icons/Ionicons')
 
@@ -34,20 +35,31 @@ export default class CurrentLocation extends Component {
       }),
     }
   };
+  
+  componentDidMount() {
+    getFavorites().catch( error => console.log("Error retrieving data:", error) )
+    .done( data => {
+      this.setState({
+        favouriteLocations: this.state.favouriteLocations.cloneWithRows(JSON.parse(data))
+      });
+    })    
+  }
+  
   _currentLocationPress(){
     //console.log('current location pressed!');
     fetchWeather('mad');
-    this.props.navigator.push({id: 'detail'})
+    this.props.navigator.push({id: 'detail',header: {name: this.props.location.name, country: this.props.location.country}})
   }
 
-  _pressRow(rowID: number){
+  _pressRow(rowID: number, rowData: string){
     //console.log(rowID);
-    this.props.navigator.push({id: 'detail'})
+    let list = rowData.split(',');
+    this.props.navigator.push({id: 'detail', header: {name: list[0], country: list[1]}})
   }
 
   _renderFavourites(rowData: string, sectionID: number, rowID: number){
     return(
-      <TouchableHighlight onPress={() => this._pressRow(rowID)} underlayColor={'#D1EEFC'} >
+      <TouchableHighlight onPress={() => this._pressRow(rowID, rowData)} underlayColor={'#D1EEFC'} >
         <View style={styles.item}>
           <Text style={{padding: 20 }}>
             {rowData}
@@ -56,11 +68,6 @@ export default class CurrentLocation extends Component {
         </View>
       </TouchableHighlight>
     );
-  }
-
-  componentDidMount() {
-    this.setState({
-      favouriteLocations: this.state.favouriteLocations.cloneWithRows(['row1', 'row2', 'row3', 'row4', 'row5', 'row6'])});
   }
 
   render() {

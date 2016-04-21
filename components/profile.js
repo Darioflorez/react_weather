@@ -33,7 +33,6 @@ export default class Profile extends Component {
             <Text style={{color: 'black',padding: 2,fontSize: 20 }}> Logga ut </Text>
           </TouchableOpacity>
         </View>
-        
       </View>
     );
   }

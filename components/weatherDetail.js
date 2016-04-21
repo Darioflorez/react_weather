@@ -12,6 +12,7 @@ import React, {
 
 import Detail from './detail'
 import { styles } from '../styles/weatherDetail'
+import { setData } from '../js/storage'
 
 var Icon = require('react-native-vector-icons/Ionicons')
 
@@ -45,6 +46,10 @@ export default class WeatherDetail extends React.Component {
   }
   _toggleFavorite(){
     this.setState({favorite: !this.state.favorite})
+    if(this.state.favorite){
+      console.log("Setting data")
+      setData("favorites", '["Stockholm,SE", "Madrid,ES", "New York,US"]')
+    }
   }
   render() {
     let switchIcon, starIcon;
@@ -68,7 +73,7 @@ export default class WeatherDetail extends React.Component {
           <TouchableOpacity onPress={this._onBack}>
             <Icon style={styles.backBtn} name="ios-arrow-left" size={30} color="blue"/>
           </TouchableOpacity>
-          <Text style={{padding:10, fontSize:20}}>Stockholm</Text>
+          <Text style={{padding:10, fontSize:20}}>{this.props.header.name}</Text>
           <TouchableOpacity onPress={this._toggleFavorite}>
             <Icon style={styles.backBtn} name={starIcon} size={25} color="blue"/>
           </TouchableOpacity>

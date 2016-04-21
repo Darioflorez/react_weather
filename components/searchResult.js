@@ -17,13 +17,13 @@ export default class SearchResult extends Component {
     this._renderRow = this._renderRow.bind(this)
     this._rowPress = this._rowPress.bind(this)
   }
-  _rowPress(){
-    this.props.navigator.push({id: 'detail'});
+  _rowPress(rowData){
+    this.props.navigator.push({id: 'detail', header: {name: rowData.name, country: rowData.country}});
     this.props.resetList();
   }
   _renderRow(rowData, sectionID, rowID){
     return (
-      <TouchableHighlight onPress={this._rowPress} underlayColor={'#D1EEFC'} >
+      <TouchableHighlight onPress={() => this._rowPress(rowData)} underlayColor={'#D1EEFC'} >
         <View style={{padding:10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end',borderBottomWidth: 1, borderBottomColor: '#C7C7CC'}}>
           <View style={{flexDirection:'column'}}>
             <Text style={{fontSize: 18}}>{ rowData.name }</Text>

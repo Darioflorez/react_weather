@@ -89,6 +89,7 @@ export default class Home extends Component {
     output = <CurrentLocation navigator={this.props.navigator}
           location={this.state.location}
           />;
+    
     return (
       <View
         style={{flex:1}}>
