@@ -32,25 +32,55 @@ export default class Home extends Component {
     super(props);
 
     this._fetchWeather = this._fetchWeather.bind(this);
+    this._getCurrentLocation = this._getCurrentLocation.bind(this);
     this.state = ({ location: location});
 
   };
 
-  _fetchWeather(state: string){
+  _getCurrentLocation(){
+    console.log("_getCurrentLocation");
+    return new Promise(function(resolve, reject){
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          //fetchWeather(null,position.coords)
+          resolve(position.coords);
+        },
+        (error) => {
+          reject(Error(error.message));
+          alert(error.message);
+        },
+        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+      );
+    });
+  }
+
+  _fetchWeather(city: string, coords: Object){
+    console.log("_fetchWeather");
+    console.log(coords);
     var _this = this;
-    fetchWeather(state)
-    .then(function(response){
+    fetchWeather(city, coords)
+    .then((response) => {
       // Show this data in a list
       let location = response[0];
       _this.setState({location:location})
-    }, function(error){
-      console.error("Failed!", error);
+    })
+    .catch((error) => {
+      console.error("Fetch Weather", error);
     });
   }
 
   componentDidMount() {
+    console.log("componentDidMount");
     // Fetch weather for current location before rendering this Screen
-    this._fetchWeather("alicante");
+    var _this = this;
+    this._getCurrentLocation()
+      .then((response) => {
+        //fetch weather with coordinates
+        //_this._fetchWeather("alicante");
+        _this._fetchWeather(null, response);
+    }, (error) => {
+        console.error("Get current Location", error);
+    });
   }
 
   render() {
