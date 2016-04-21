@@ -4,6 +4,7 @@ const BASE_URL = "http://api.openweathermap.org/data/2.5/";
 const KEY = "3afea7f9ad83cfd1c1e352f5977f7af7";
 const TYPE = "like";
 const UNITS = "metric";
+const FORRECAST = "forecast/daily?q=London&units=metric&cnt=7&appid=3afea7f9ad83cfd1c1e352f5977f7af7;"
 
 type Location = {
   name: string;
@@ -31,6 +32,7 @@ function fetchWeather(input: string, coords: Object) {
 // This function need another function pushLocationToList(item: Object, list: []) => void
 //
 function _fetchWeatherByCoordinates(coords: Object){
+  // Build the URL to be used to get the weather
   const weatherUrl = BASE_URL
     .concat("weather?lat=" + coords.latitude)
     .concat("&lon=" + coords.longitude)
@@ -38,7 +40,7 @@ function _fetchWeatherByCoordinates(coords: Object){
     .concat("&units="+ UNITS)
     .concat("&appid=" + KEY);
 
-  return new Promise(function(resolve, reject){
+  return new Promise((resolve, reject) => {
     fetch(weatherUrl)
       .then((response) => response.json())
       .then((item) => {
@@ -70,14 +72,14 @@ function _fetchWeatherByCoordinates(coords: Object){
 }
 
 function _fetchWeatherByLocationName(input: string){
-
+// Build the URL to be used to get the weather
   const weatherUrl = BASE_URL
     .concat("find?q=" + input)
     .concat("&type="+TYPE)
     .concat("&units="+ UNITS)
     .concat("&appid=" + KEY);
 
-  return new Promise(function(resolve, reject){
+  return new Promise((resolve, reject) => {
     fetch(weatherUrl)
       .then((response) => response.json())
       .then((responseJSON) => {
@@ -112,6 +114,53 @@ function _fetchWeatherByLocationName(input: string){
   });
 }
 
+function fetchWeatherForrecast(input: string){
+  // Build the URL to be used to get the weather
+  const weatherUrl = BASE_URL
+    .concat("forecast/daily?q=" + input)
+    .concat("&units=" + UNITS)
+    .concat("&cnt=7")
+    .concat("&appid=" + KEY);
+
+  return new Promise((resolve,reject) => {
+    fetch(weatherUrl)
+      .then((response) => response.json())
+      .then((responseJSON) => {
+          if(Number(responseJSON.cod) === 200){
+            const city = responseJSON.city;
+            console.log("fetchWeatherForrecast");
+            console.log(city);
+            const responseList = responseJSON.list;
+            var list = [];
+            // This Object is quite different the current weather
+            // This is why this operations can not be done in a function
+            responseList.forEach((item) => {
+              let weather: Location = {name: city.name,
+                    country: city.country,
+                    description: item.weather[0].description,
+                    icon: item.weather[0].icon,
+                    temp: item.temp.day,
+                    pressure: item.pressure,
+                    humidity: item.humidity,
+                    temp_min: item.temp.min,
+                    temp_max: item.temp.max
+              };
+              list.push(weather);
+            })
+            resolve(list);
+        }
+        else{
+          console.error("FETCH ERROR: " + responseJSON.cod);
+          reject(Error(responseJSON.cod));
+        }
+      })
+      .catch((error) => {
+        reject(Error("Network Error"));
+      });
+  });
+}
+
 module.exports = {
-  fetchWeather: fetchWeather
+  fetchWeather: fetchWeather,
+  fetchWeatherForrecast: fetchWeatherForrecast
 };
