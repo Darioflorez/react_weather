@@ -70,8 +70,8 @@ export default class CurrentLocation extends Component {
         <TouchableOpacity style={styles.currentLocation} onPress={this._currentLocationPress}>
           <Text style={styles.header}>{this.props.location.name}</Text>
           <View style={styles.currentView}>
-            <Text style={{fontSize: 60}}>{this.props.location.temp}°C</Text>
-            <Icon style={styles.backBtn} name="cloud" size={100} />
+            <Icon style={{color: 'white',}} name="ios-partlysunny-outline" size={100} />
+            <Text style={styles.tempeture}>{this.props.location.temp}°C</Text>
           </View>
         </TouchableOpacity>
         <ListView

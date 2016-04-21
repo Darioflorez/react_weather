@@ -10,18 +10,29 @@ export const styles = StyleSheet.create({
     header: { 
       fontSize: 30,
       padding: 10,
+      fontWeight: '100',
+      fontFamily: 'Helvetica Neue',
+      color: 'white',
+    },
+    tempeture:{
+      fontSize: 50,
+      fontWeight: '100',
+      fontFamily: 'Helvetica Neue',
+      color: 'white',
+      paddingLeft: 10,
     },
     currentLocation: {
-      flex: 0.4,
+      flex: 0.5,
+      justifyContent: 'center',
+      alignItems: 'center',
       borderBottomWidth: 1,
       borderBottomColor: '#C7C7CC',
+      backgroundColor: '#34AADC',
     },
     currentView:{
       flex:1,
       flexDirection: 'row',
-      justifyContent: 'space-between',
       alignItems: 'center',
-      padding: 20,
     },
     list: {
 
