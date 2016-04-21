@@ -36,7 +36,7 @@ export default class Home extends Component {
 
   constructor(props){
     super(props);
-    this.state = ({ 
+    this.state = ({
       location: location,
       list: [],
       listLength: 0,
@@ -45,34 +45,64 @@ export default class Home extends Component {
       transparent: true,
     });
     this._fetchWeather = this._fetchWeather.bind(this);
+    this._getCurrentLocation = this._getCurrentLocation.bind(this);
     this._setList = this._setList.bind(this);
     this._resetList = this._resetList.bind(this);
     this._setModalVisible = this._setModalVisible.bind(this);
     this._onLogout = this._onLogout.bind(this);
   };
-  
+
+  _getCurrentLocation(){
+    console.log("_getCurrentLocation");
+    return new Promise(function(resolve, reject){
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          resolve(position.coords);
+        },
+        (error) => {
+          reject(Error(error.message));
+          alert(error.message);
+        },
+        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+      );
+    });
+  }
+
   _setList(list){
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.setState({list: ds.cloneWithRows(list), listLength: list.length});
   }
+
   _resetList(){
     this.setState({list: [], listLength: 0});
   }
-  _fetchWeather(state: string){
+
+  _fetchWeather(city: string, coords: Object){
     var _this = this;
-    fetchWeather(state)
-    .then(function(response){
+    fetchWeather(city, coords)
+    .then((response) => {
       // Show this data in a list
       let location = response[0];
       _this.setState({location:location})
-    }, function(error){
-      console.error("Failed!", error);
+    })
+    .catch((error) => {
+      console.error("Fetch Weather", error);
     });
   }
 
   componentDidMount() {
+    console.log("componentDidMount");
     // Fetch weather for current location before rendering this Screen
-    this._fetchWeather("alicante");
+    var _this = this;
+    this._getCurrentLocation()
+      .then((response) => {
+        //fetch weather with coordinates
+        //_this._fetchWeather("alicante");
+        console.log(response);
+        _this._fetchWeather(null, response);
+    }).catch((error) => {
+        console.error("Get current Location", error);
+    });
   }
   _setModalVisible(visible) {
     this.setState({modalVisible: visible});
@@ -84,7 +114,7 @@ export default class Home extends Component {
   }
   render() {
     let output;
-    this.state.listLength >= 1 ? 
+    this.state.listLength >= 1 ?
     output = <SearchResult data={this.state.list} resetList={this._resetList} navigator={this.props.navigator}/> :
     output = <CurrentLocation navigator={this.props.navigator}
           location={this.state.location}
