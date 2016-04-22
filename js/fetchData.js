@@ -11,6 +11,8 @@ type Date = {
 };
 
 type Location = {
+  longitude: number;
+  latitude: number;
   date: Date;
   name: string;
   country: string;
@@ -142,6 +144,8 @@ function fetchWeatherList(input: string){
         result.forEach((item) =>{
           list.push(item);
         })
+        list[0].date.day = "Idag";
+        list[1].date.day = "Imorgon";
         resolve(list);
       })
       .catch((error) => {
@@ -181,7 +185,7 @@ function _getDateString(date: Object): string{
   let month = date.getMonth()+1;
   month = ((month<10) ? "0"+month : month);
 
-  return year + "/" + month + "/" + day;
+  return year + "-" + month + "-" + day;
 }
 
 function _createForrecastList(forrecast: Object): []{
@@ -199,7 +203,8 @@ function _createForrecastList(forrecast: Object): []{
   const month = dateToday.getMonth();
   const dayNum = dateToday.getDate();
   var daysInTheFuture = 1;
-  responseList.forEach((item) => {
+  responseList.forEach((item,index) => {
+  console.log("INDEX: " + index)
     var fullDate = new Date(year,month,dayNum+daysInTheFuture);
     //console.log(fullDate.toDateString());
     const day = _getDayName(Number(fullDate.getDay()));
@@ -209,6 +214,8 @@ function _createForrecastList(forrecast: Object): []{
       dateStr: dateStr
     };
     let weather: Location = {
+          longitude: city.coord.lon,
+          latitude: city.coord.lat,
           date: date,
           name: city.name,
           country: city.country,
@@ -223,6 +230,7 @@ function _createForrecastList(forrecast: Object): []{
     list.push(weather);
     daysInTheFuture++;
   })
+  
   return list;
 }
 
@@ -236,6 +244,8 @@ function _createLocationObject(item: Object): Location{
   };
 
   let location: Location = {
+        longitude: item.coord.lon,
+        latitude: item.coord.lat,
         date:date,
         name: item.name,
         country: item.sys.country,

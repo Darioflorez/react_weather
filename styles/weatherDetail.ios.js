@@ -21,6 +21,17 @@ export const styles = StyleSheet.create({
     flex: 0.6,
     backgroundColor: 'white',
   },
+  rowView: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#C7C7CC',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  rowText: {
+    fontSize: 20,
+    fontWeight: '300',
+    fontFamily: 'Helvetica Neue',
+  },
   switchMode:{
     position: 'absolute',
     top: 220,
@@ -39,5 +50,19 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     backgroundColor: 'white',
+  },
+  dateView: {
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  dateStr: {
+    fontWeight: 'bold',
+    fontFamily: 'Helvetica Neue',
+    color: '#8E8E93',
+  },
+  day: {
+    fontWeight: '400',
+    fontSize: 16,
+    fontFamily: 'Helvetica Neue',
   },
 })

@@ -53,7 +53,6 @@ export default class Home extends Component {
   };
 
   _getCurrentLocation(){
-    console.log("_getCurrentLocation");
     return new Promise(function(resolve, reject){
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -92,12 +91,11 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount");
+    //console.log("componentDidMount");
     // Fetch weather for current location before rendering this Screen
     var _this = this;
     this._getCurrentLocation()
       .then((response) => {
-        console.log(response);
         _this._fetchWeather(null, response);
     }).catch((error) => {
         console.log("Get current Location", error);
@@ -117,7 +115,7 @@ export default class Home extends Component {
     output = <SearchResult data={this.state.list} resetList={this._resetList} navigator={this.props.navigator}/> :
     output = <CurrentLocation navigator={this.props.navigator}
           location={this.state.location}
-          />;
+          />;         
     return (
       <View
         style={{flex:1}}>

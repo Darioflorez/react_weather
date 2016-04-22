@@ -22,7 +22,7 @@ export default class App extends React.Component {
       return (<Home navigator={navigator}/>);
     }
     if(route.id === 'detail'){
-      return (<WeatherDetail  navigator={navigator}/>);
+      return (<WeatherDetail  header={route.header} navigator={navigator}/>);
     }
   }
   configureScene(route, routeStack){
@@ -30,7 +30,6 @@ export default class App extends React.Component {
   }
   render() {
     return (
-
       <Navigator
         ref='app'
         initialRoute={{id: 'login'}}
