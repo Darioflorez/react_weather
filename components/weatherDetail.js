@@ -13,7 +13,7 @@ import React, {
 import Detail from './detail';
 import { styles } from '../styles/weatherDetail';
 import { setData } from '../js/storage';
-import { fetchWeatherForrecast } from '../js/fetchData';
+import { fetchWeatherList } from '../js/fetchData';
 
 var Icon = require('react-native-vector-icons/Ionicons')
 
@@ -32,9 +32,9 @@ export default class WeatherDetail extends React.Component {
   }
   componentDidMount(){
     let list = []
-    fetchWeatherForrecast(this.props.header.searchString)
+    fetchWeatherList(this.props.header.searchString)
     .then(
-      (data) =>  {      
+      (data) =>  {   
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(data),
         region: {
@@ -57,16 +57,20 @@ export default class WeatherDetail extends React.Component {
     }
     //console.log(this.state.route)
   }
-  _renderRow(rowData){
+  _renderRow(rowData, sectionID: number, rowID: number){
     return(
-      <View style={styles.rowView}> 
-        <Text style={styles.rowText}>{rowData.description}</Text>
-        <View style={{flexDirection: 'row'}}>
-        <Text style={styles.rowText}>{rowData.temp}°c</Text>
-        <View style={{paddingTop: 12, paddingRight:20,flexDirection: 'column', justifyContent:'center'}}>
-          <Text style={{fontSize: 12, color: '#1F1F21'}}>max: {rowData.temp_max}°</Text>
-          <Text style={{fontSize: 12, color: '#1F1F21'}}>min: {rowData.temp_min}°</Text>
-        </View>
+      <View style={styles.rowView}>
+        <View style={{margin: 10,flex: 1,flexDirection: 'row', justifyContent:'space-between', alignItems:'center'}}>
+          <View style={styles.dateView}>
+            <Text style={styles.day}>{rowData.date.day}</Text>
+            <Text style={styles.dateStr}>{rowData.date.dateStr}</Text>
+          </View>
+          <Text style={{fontSize: 14, color: '#1F1F21'}}>{rowData.description}</Text>
+          <Text style={styles.rowText}>{rowData.temp}°c</Text>
+          <View style={{flexDirection: 'column', }}>
+            <Text style={{fontSize: 12, color: '#1F1F21'}}>max: {rowData.temp_max}°</Text>
+            <Text style={{fontSize: 12, color: '#1F1F21'}}>min: {rowData.temp_min}°</Text>
+          </View>
         </View>
       </View>
     );

@@ -64,7 +64,7 @@ export default class CurrentLocation extends Component {
     return(
       <TouchableHighlight onPress={() => this._pressRow(rowID, rowData)} underlayColor={'#D1EEFC'} >
         <View style={styles.item}>
-          <Text style={{padding: 20 }}>
+          <Text style={{fontWeight: '300',fontFamily: 'Helvetica Neue',padding: 20 }}>
             {rowData}
           </Text>
           <Icon style={{paddingRight:10}}name="ios-arrow-right" size={30} color="blue"/>

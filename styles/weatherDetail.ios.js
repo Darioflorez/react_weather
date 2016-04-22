@@ -28,7 +28,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   rowText: {
-    padding: 15,
     fontSize: 20,
     fontWeight: '300',
     fontFamily: 'Helvetica Neue',
@@ -51,5 +50,19 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     backgroundColor: 'white',
+  },
+  dateView: {
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  dateStr: {
+    fontWeight: 'bold',
+    fontFamily: 'Helvetica Neue',
+    color: '#8E8E93',
+  },
+  day: {
+    fontWeight: '400',
+    fontSize: 16,
+    fontFamily: 'Helvetica Neue',
   },
 })

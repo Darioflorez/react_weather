@@ -5,9 +5,15 @@ const KEY = "3afea7f9ad83cfd1c1e352f5977f7af7";
 const TYPE = "like";
 const UNITS = "metric";
 
+type Date = {
+    day: string;
+    dateStr: string;
+};
+
 type Location = {
   longitude: number;
   latitude: number;
+  date: Date;
   name: string;
   country: string;
   description: string;
@@ -16,7 +22,7 @@ type Location = {
   pressure: number;
   humidity: number;
   temp_min: number;
-  temp_max: number
+  temp_max: numbe;
 };
 
 // Weather api don't allows search for string with less than 3 characters
@@ -47,18 +53,9 @@ function _fetchWeatherByCoordinates(coords: Object){
       .then((item) => {
         if(Number(item.cod) === 200){
           // pushItemIntoList(item Object, list []) => void
-          let list = [];
-          let weather: Location = {name: item.name,
-                country: item.sys.country,
-                description: item.weather[0].description,
-                icon: item.weather[0].icon,
-                temp: item.main.temp,
-                pressure: item.main.pressure,
-                humidity: item.main.humidity,
-                temp_min: item.main.temp_min,
-                temp_max: item.main.temp_max
-          };
-          list.push(weather);
+          var list = [];
+          let location :Location = _createLocationObject(item);
+          list.push(location);
           resolve(list);
           //
         }else{
@@ -89,18 +86,9 @@ function _fetchWeatherByLocationName(input: string){
             const responseList = responseJSON.list;
             var list = [];
             responseList.forEach(item => {
-              // pushItemIntoList(item Object, list []) => void
-              let weather: Location = {name: item.name,
-                    country: item.sys.country,
-                    description: item.weather[0].description,
-                    icon: item.weather[0].icon,
-                    temp: item.main.temp,
-                    pressure: item.main.pressure,
-                    humidity: item.main.humidity,
-                    temp_min: item.main.temp_min,
-                    temp_max: item.main.temp_max
-              };
-              list.push(weather);
+              //_pushItemIntoList(item: Object, list: []) => void
+              let location :Location = _createLocationObject(item);
+              list.push(location);
             });
             resolve(list);
         }
@@ -128,29 +116,7 @@ function fetchWeatherForrecast(input: string){
       .then((response) => response.json())
       .then((responseJSON) => {
           if(Number(responseJSON.cod) === 200){
-            const city = responseJSON.city;
-            console.log("fetchWeatherForrecast");
-            console.log(city);
-            const responseList = responseJSON.list;
-            var list = [];
-            // This Object is quite different the current weather
-            // This is why this operations can not be done in a function
-            responseList.forEach((item) => {
-              let weather: Location = {
-                    longitude: city.coord.lon,
-                    latitude: city.coord.lat,
-                    name: city.name,
-                    country: city.country,
-                    description: item.weather[0].description,
-                    icon: item.weather[0].icon,
-                    temp: item.temp.day,
-                    pressure: item.pressure,
-                    humidity: item.humidity,
-                    temp_min: item.temp.min,
-                    temp_max: item.temp.max
-              };
-              list.push(weather);
-            })
+            var list = _createForrecastList(responseJSON);
             resolve(list);
         }
         else{
@@ -164,7 +130,139 @@ function fetchWeatherForrecast(input: string){
   });
 }
 
+function fetchWeatherList(input: string){
+  return new Promise((resolve,reject) => {
+    var list = [];
+    _fetchWeatherByLocationName(input)
+      .then((result) => {
+        var today = result[0];
+        list.push(today)
+        return input;
+      })
+      .then(fetchWeatherForrecast)
+      .then((result) => {
+        result.forEach((item) =>{
+          list.push(item);
+        })
+        list[0].date.day = "Idag";
+        list[1].date.day = "Imorgon";
+        resolve(list);
+      })
+      .catch((error) => {
+        console.error(error);
+        reject(Error("fetchWeatherList"));
+      });
+  });
+}
+
+// make a function that fetchWeather and then fetchWeatherForrecast
+// make a list with the returned objects
+function _getDayName(input: number): string{
+  switch(input) {
+    case 0:
+      return "Söndag";
+    case 1:
+      return "Måndag";
+    case 2:
+      return "Tisdag";
+    case 3:
+      return "Onsdag";
+    case 4:
+      return "Torsdag";
+    case 5:
+      return "Fredag";
+    case 6:
+      return "Lördag";
+    default:
+        break;
+  }
+}
+
+function _getDateString(date: Object): string{
+  let day = date.getDate();
+  day = ((date<10) ? "0"+day : day);
+  let year = date.getFullYear();
+  let month = date.getMonth()+1;
+  month = ((month<10) ? "0"+month : month);
+
+  return year + "-" + month + "-" + day;
+}
+
+function _createForrecastList(forrecast: Object): []{
+  var list = [];
+  /*const location: Location = _createLocationObject(today);
+  list.push(location);*/
+
+  const city = forrecast.city;
+  const responseList = forrecast.list;
+
+  // This Object is quite different the current weather
+  // This is why this operations can not be done in a function
+  const dateToday = new Date();
+  const year = dateToday.getFullYear();
+  const month = dateToday.getMonth();
+  const dayNum = dateToday.getDate();
+  var daysInTheFuture = 1;
+  responseList.forEach((item,index) => {
+  console.log("INDEX: " + index)
+    var fullDate = new Date(year,month,dayNum+daysInTheFuture);
+    //console.log(fullDate.toDateString());
+    const day = _getDayName(Number(fullDate.getDay()));
+    const dateStr = _getDateString(fullDate);
+    const date = {
+      day: day,
+      dateStr: dateStr
+    };
+    let weather: Location = {
+          longitude: city.coord.lon,
+          latitude: city.coord.lat,
+          date: date,
+          name: city.name,
+          country: city.country,
+          description: item.weather[0].description,
+          icon: item.weather[0].icon,
+          temp: item.temp.day,
+          pressure: item.pressure,
+          humidity: item.humidity,
+          temp_min: item.temp.min,
+          temp_max: item.temp.max
+    };
+    list.push(weather);
+    daysInTheFuture++;
+  })
+  
+  return list;
+}
+
+function _createLocationObject(item: Object): Location{
+  let fullDate = new Date();
+  let day = _getDayName(Number(fullDate.getDay()));
+  let dateStr = _getDateString(fullDate);
+  let date = {
+    day: day,
+    dateStr: dateStr
+  };
+
+  let location: Location = {
+        longitude: item.coord.lon,
+        latitude: item.coord.lat,
+        date:date,
+        name: item.name,
+        country: item.sys.country,
+        description: item.weather[0].description,
+        icon: item.weather[0].icon,
+        temp: item.main.temp,
+        pressure: item.main.pressure,
+        humidity: item.main.humidity,
+        temp_min: item.main.temp_min,
+        temp_max: item.main.temp_max
+  };
+
+  return location;
+}
+
 module.exports = {
   fetchWeather: fetchWeather,
-  fetchWeatherForrecast: fetchWeatherForrecast
+  fetchWeatherForrecast: fetchWeatherForrecast,
+  fetchWeatherList: fetchWeatherList
 };
