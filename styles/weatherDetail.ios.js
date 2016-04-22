@@ -21,6 +21,18 @@ export const styles = StyleSheet.create({
     flex: 0.6,
     backgroundColor: 'white',
   },
+  rowView: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#C7C7CC',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  rowText: {
+    padding: 15,
+    fontSize: 20,
+    fontWeight: '300',
+    fontFamily: 'Helvetica Neue',
+  },
   switchMode:{
     position: 'absolute',
     top: 220,

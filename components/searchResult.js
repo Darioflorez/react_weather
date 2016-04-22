@@ -18,7 +18,8 @@ export default class SearchResult extends Component {
     this._rowPress = this._rowPress.bind(this)
   }
   _rowPress(rowData){
-    this.props.navigator.push({id: 'detail', header: {name: rowData.name, country: rowData.country}});
+    this.props.navigator.push({id: 'detail',
+      header: {name: rowData.name, country: rowData.country, searchString: rowData.name+","+rowData.country}});
     this.props.resetList();
   }
   _renderRow(rowData, sectionID, rowID){
@@ -37,7 +38,6 @@ export default class SearchResult extends Component {
       );
   }
   render() {
-    console.log(this.props.data)
     return (
       <ListView
         dataSource={this.props.data}

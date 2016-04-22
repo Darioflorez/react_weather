@@ -10,20 +10,43 @@ import React, {
   StatusBar,
 } from 'react-native';
 
-import Detail from './detail'
-import { styles } from '../styles/weatherDetail'
-import { setData } from '../js/storage'
+import Detail from './detail';
+import { styles } from '../styles/weatherDetail';
+import { setData } from '../js/storage';
+import { fetchWeatherForrecast } from '../js/fetchData';
 
 var Icon = require('react-native-vector-icons/Ionicons')
 
 export default class WeatherDetail extends React.Component {
   constructor(){
     super()
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-    this.state = {favorite: false, route: 'map', dataSource: ds.cloneWithRows(['Today', 'Tomorrow','Wednesday','Thursday','Friday','Saturday'])}
+    this.state = {
+      favorite: false,
+      region: null,
+      route: 'map',
+      dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+    }
     this._changeDetail = this._changeDetail.bind(this)
     this._onBack = this._onBack.bind(this)
     this._toggleFavorite = this._toggleFavorite.bind(this)
+  }
+  componentDidMount(){
+    let list = []
+    fetchWeatherForrecast(this.props.header.searchString)
+    .then(
+      (data) =>  {      
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(data),
+        region: {
+          longitude: data[0].longitude,
+          latitude: data[0].latitude,
+          latitudeDelta: 0.2,
+          longitudeDelta: 0.2,
+        }
+      })
+    })
+    .catch( error => console.log("Error when fetching weather: ", error))
+    
   }
   _changeDetail(){
     if(this.state.route === 'map'){
@@ -32,12 +55,19 @@ export default class WeatherDetail extends React.Component {
     else{
       this.setState({route: 'map'})
     }
-    console.log(this.state.route)
+    //console.log(this.state.route)
   }
   _renderRow(rowData){
     return(
-      <View style={{borderBottomWidth: 1, borderBottomColor: 'grey'}}> 
-        <Text style={{padding: 20 }}>{rowData}</Text>
+      <View style={styles.rowView}> 
+        <Text style={styles.rowText}>{rowData.description}</Text>
+        <View style={{flexDirection: 'row'}}>
+        <Text style={styles.rowText}>{rowData.temp}°c</Text>
+        <View style={{paddingTop: 12, paddingRight:20,flexDirection: 'column', justifyContent:'center'}}>
+          <Text style={{fontSize: 12, color: '#1F1F21'}}>max: {rowData.temp_max}°</Text>
+          <Text style={{fontSize: 12, color: '#1F1F21'}}>min: {rowData.temp_min}°</Text>
+        </View>
+        </View>
       </View>
     );
   }
@@ -58,7 +88,7 @@ export default class WeatherDetail extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.info}>
-          <Detail route={this.state.route}/>
+          <Detail route={this.state.route} region={this.state.region}/>
           <TouchableOpacity style={styles.switchMode} onPress={this._changeDetail}>
             <Icon style={styles.backBtn} name={switchIcon} size={25}/>
           </TouchableOpacity>

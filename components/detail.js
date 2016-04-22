@@ -12,17 +12,20 @@ import MapView from 'react-native-maps';
 import RNChart from 'react-native-chart';
 
 export default class WeatherDetail extends React.Component {
+  constructor(){
+    super()
+  }
   render() {
     let output;
     if(this.props.route === 'map'){
-      output = <MapView 
+      if(this.props.region){
+        output = <MapView 
         style={{flex:1}}
-        initialRegion={{
-          latitude: 59.3293,
-          longitude: 18.0686,
-          latitudeDelta: 0.1,
-          longitudeDelta: 0.1,
-        }}/>;
+        initialRegion={ this.props.region }/>;
+      }
+      else{
+        <Text>Loading...</Text> 
+      }
     }
     else{
       output = <RNChart style={{flex:1, marginTop: 40,}}

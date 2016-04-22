@@ -6,6 +6,8 @@ const TYPE = "like";
 const UNITS = "metric";
 
 type Location = {
+  longitude: number;
+  latitude: number;
   name: string;
   country: string;
   description: string;
@@ -134,7 +136,10 @@ function fetchWeatherForrecast(input: string){
             // This Object is quite different the current weather
             // This is why this operations can not be done in a function
             responseList.forEach((item) => {
-              let weather: Location = {name: city.name,
+              let weather: Location = {
+                    longitude: city.coord.lon,
+                    latitude: city.coord.lat,
+                    name: city.name,
                     country: city.country,
                     description: item.weather[0].description,
                     icon: item.weather[0].icon,

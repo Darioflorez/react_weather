@@ -39,22 +39,25 @@ export default class CurrentLocation extends Component {
   componentDidMount() {
     getFavorites().catch( error => console.log("Error retrieving data:", error) )
     .done( data => {
-      this.setState({
-        favouriteLocations: this.state.favouriteLocations.cloneWithRows(JSON.parse(data))
-      });
+      if(data != null){
+        this.setState({
+          favouriteLocations: this.state.favouriteLocations.cloneWithRows(JSON.parse(data))
+        });
+      }
     })    
   }
   
   _currentLocationPress(){
     //console.log('current location pressed!');
-    fetchWeather('mad');
-    this.props.navigator.push({id: 'detail',header: {name: this.props.location.name, country: this.props.location.country}})
+    let searchString = this.props.location.name+","+this.props.location.country;
+    this.props.navigator.push({id: 'detail',
+      header: {name: this.props.location.name, country: this.props.location.country, searchString: searchString}})
   }
 
   _pressRow(rowID: number, rowData: string){
     //console.log(rowID);
     let list = rowData.split(',');
-    this.props.navigator.push({id: 'detail', header: {name: list[0], country: list[1]}})
+    this.props.navigator.push({id: 'detail', header: {name: list[0], country: list[1], searchString: rowData}})
   }
 
   _renderFavourites(rowData: string, sectionID: number, rowID: number){
@@ -78,7 +81,7 @@ export default class CurrentLocation extends Component {
           <Text style={styles.header}>{this.props.location.name}</Text>
           <View style={styles.currentView}>
             <Icon style={{color: 'white',}} name="ios-partlysunny-outline" size={100} />
-            <Text style={styles.tempeture}>{this.props.location.temp}°C</Text>
+            <Text style={styles.tempeture}>{this.props.location.temp}°c</Text>
           </View>
         </TouchableOpacity>
         <ListView

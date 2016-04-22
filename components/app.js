@@ -30,7 +30,6 @@ export default class App extends React.Component {
   }
   render() {
     return (
-
       <Navigator
         ref='app'
         initialRoute={{id: 'login'}}
