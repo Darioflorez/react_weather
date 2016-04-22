@@ -1,27 +1,42 @@
+import {
+  StyleSheet,
+  Dimensions,
+   } from 'react-native'
 
-import { StyleSheet } from 'react-native'
+const {height, width} = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor: 'blue',
-  },
-  NavBar: {
-    flex: 0.1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    backgroundColor: 'white',
   },
   backBtn: {
     padding:10,
   },
   info: {
-    flex: 0.3,
-    backgroundColor: 'white',   
+    flex: 0.4,
+    backgroundColor: 'white',
   },
   list: {
     flex: 0.6,
+    backgroundColor: 'white',
+  },
+  switchMode:{
+    position: 'absolute',
+    top: 220,
+    left: width-45,
+    backgroundColor: 'transparent',
+  },
+  overlay: {
+    opacity: 0.9,
+    position: 'absolute',
+    paddingTop: 10,
+    top:0,
+    left: 0,
+    width: width,
+    borderRadius: 25,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
     backgroundColor: 'white',
   },
 })

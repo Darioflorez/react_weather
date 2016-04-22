@@ -15,8 +15,8 @@ export const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    height: 30, 
-    borderColor: '#C7C7CC', 
+    height: 30,
+    borderColor: '#C7C7CC',
     padding: 5,
     paddingLeft: 10,
     borderRadius: 5,

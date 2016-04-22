@@ -14,7 +14,7 @@ import PlayGround from './components/playGround';
 class react_weather extends Component {
   render() {
     return (
-      <PlayGround/>
+      <App/>
     );
   }
 }
