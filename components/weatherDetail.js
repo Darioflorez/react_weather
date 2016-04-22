@@ -12,16 +12,16 @@ import React, {
 
 import Detail from './detail';
 import { styles } from '../styles/weatherDetail';
-import { setData } from '../js/storage';
+import { addToFavorites, removeFromFavorites } from '../js/storage';
 import { fetchWeatherList } from '../js/fetchData';
 
 var Icon = require('react-native-vector-icons/Ionicons')
 
 export default class WeatherDetail extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      favorite: false,
+      favorite: this.props.favorite,
       region: null,
       route: 'map',
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
@@ -76,19 +76,17 @@ export default class WeatherDetail extends React.Component {
     );
   }
   _onBack(){
-    this.props.navigator.pop({id: 'detail'})
+    this.props.navigator.resetTo({id: 'home'})
   }
   _toggleFavorite(){
     this.setState({favorite: !this.state.favorite})
-    if(this.state.favorite){
-      console.log("Setting data")
-      setData("favorites", '["Stockholm,SE", "Madrid,ES", "New York,US"]')
-    }
+    let value = this.props.header.searchString;
+    this.state.favorite ? addToFavorites(value) : removeFromFavorites(value)
   }
   render() {
     let switchIcon, starIcon;
-    this.state.route === 'map' ? switchIcon = "ios-pulse-strong" : switchIcon = "ios-navigate"
-    this.state.favorite ? starIcon = "ios-star" : starIcon = "ios-star-outline"
+    this.state.route === 'map' ? switchIcon = "ios-pulse-strong" : switchIcon = "ios-navigate";
+    this.state.favorite ? starIcon = "ios-star" : starIcon = "ios-star-outline";
     return (
       <View style={styles.container}>
         <View style={styles.info}>

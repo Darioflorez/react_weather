@@ -14,7 +14,7 @@ import React, {
 
 import { styles } from '../styles/currentLocation';
 import { fetchWeather } from '../js/fetchData';
-import { setData, getAllData, getFavorites } from '../js/storage';
+import { getFavorites, } from '../js/storage';
 
 var Icon = require('react-native-vector-icons/Ionicons')
 
@@ -44,7 +44,7 @@ export default class CurrentLocation extends Component {
           favouriteLocations: this.state.favouriteLocations.cloneWithRows(JSON.parse(data))
         });
       }
-    })    
+    })   
   }
   
   _currentLocationPress(){
@@ -57,7 +57,7 @@ export default class CurrentLocation extends Component {
   _pressRow(rowID: number, rowData: string){
     //console.log(rowID);
     let list = rowData.split(',');
-    this.props.navigator.push({id: 'detail', header: {name: list[0], country: list[1], searchString: rowData}})
+    this.props.navigator.push({id: 'detail', favorite: true, header: {name: list[0], country: list[1], searchString: rowData}})
   }
 
   _renderFavourites(rowData: string, sectionID: number, rowID: number){

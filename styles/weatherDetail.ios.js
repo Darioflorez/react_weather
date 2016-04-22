@@ -45,7 +45,6 @@ export const styles = StyleSheet.create({
     top:0,
     left: 0,
     width: width,
-    borderRadius: 25,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',
