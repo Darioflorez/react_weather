@@ -23,6 +23,7 @@ export default class WeatherDetail extends React.Component {
     this.state = {
       favorite: this.props.favorite,
       region: null,
+      rawData: null,
       route: 'map',
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
     }
@@ -36,6 +37,7 @@ export default class WeatherDetail extends React.Component {
     .then(
       (data) =>  {   
       this.setState({
+        rawData: data,
         dataSource: this.state.dataSource.cloneWithRows(data),
         region: {
           longitude: data[0].longitude,
@@ -90,7 +92,7 @@ export default class WeatherDetail extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.info}>
-          <Detail route={this.state.route} region={this.state.region}/>
+          <Detail rawData={this.state.rawData} route={this.state.route} region={this.state.region}/>
           <TouchableOpacity style={styles.switchMode} onPress={this._changeDetail}>
             <Icon style={styles.backBtn} name={switchIcon} size={25}/>
           </TouchableOpacity>
