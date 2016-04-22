@@ -61,7 +61,7 @@ export default class Home extends Component {
         },
         (error) => {
           reject(Error(error.message));
-          alert(error.message);
+          alert("Location not found");
         },
         {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
       );
@@ -86,7 +86,8 @@ export default class Home extends Component {
       _this.setState({location:location})
     })
     .catch((error) => {
-      console.error("Fetch Weather", error);
+      alert("Unable to retrive weather");
+      console.log("Fetch Weather", error);
     });
   }
 
@@ -96,12 +97,10 @@ export default class Home extends Component {
     var _this = this;
     this._getCurrentLocation()
       .then((response) => {
-        //fetch weather with coordinates
-        //_this._fetchWeather("alicante");
         console.log(response);
         _this._fetchWeather(null, response);
     }).catch((error) => {
-        console.error("Get current Location", error);
+        console.log("Get current Location", error);
     });
   }
   _setModalVisible(visible) {
