@@ -22,7 +22,7 @@ export default class App extends React.Component {
       return (<Home navigator={navigator}/>);
     }
     if(route.id === 'detail'){
-      return (<WeatherDetail  header={route.header} navigator={navigator}/>);
+      return (<WeatherDetail favorite={route.favorite} header={route.header} navigator={navigator}/>);
     }
   }
   configureScene(route, routeStack){

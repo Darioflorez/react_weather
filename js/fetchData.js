@@ -203,8 +203,7 @@ function _createForrecastList(forrecast: Object): []{
   const month = dateToday.getMonth();
   const dayNum = dateToday.getDate();
   var daysInTheFuture = 1;
-  responseList.forEach((item,index) => {
-  console.log("INDEX: " + index)
+  responseList.forEach((item) => {
     var fullDate = new Date(year,month,dayNum+daysInTheFuture);
     //console.log(fullDate.toDateString());
     const day = _getDayName(Number(fullDate.getDay()));

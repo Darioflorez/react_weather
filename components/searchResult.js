@@ -18,7 +18,7 @@ export default class SearchResult extends Component {
     this._rowPress = this._rowPress.bind(this)
   }
   _rowPress(rowData){
-    this.props.navigator.push({id: 'detail',
+    this.props.navigator.push({id: 'detail', favorite: null,
       header: {name: rowData.name, country: rowData.country, searchString: rowData.name+","+rowData.country}});
     this.props.resetList();
   }

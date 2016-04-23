@@ -12,17 +12,18 @@ import React, {
 
 import Detail from './detail';
 import { styles } from '../styles/weatherDetail';
-import { setData } from '../js/storage';
+import { addToFavorites, removeFromFavorites } from '../js/storage';
 import { fetchWeatherList } from '../js/fetchData';
 
 var Icon = require('react-native-vector-icons/Ionicons')
 
 export default class WeatherDetail extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
-      favorite: false,
+      favorite: this.props.favorite,
       region: null,
+      rawData: null,
       route: 'map',
       dataSource: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
     }
@@ -36,6 +37,7 @@ export default class WeatherDetail extends React.Component {
     .then(
       (data) =>  {   
       this.setState({
+        rawData: data,
         dataSource: this.state.dataSource.cloneWithRows(data),
         region: {
           longitude: data[0].longitude,
@@ -76,23 +78,21 @@ export default class WeatherDetail extends React.Component {
     );
   }
   _onBack(){
-    this.props.navigator.pop({id: 'detail'})
+    this.props.navigator.resetTo({id: 'home'})
   }
   _toggleFavorite(){
     this.setState({favorite: !this.state.favorite})
-    if(this.state.favorite){
-      console.log("Setting data")
-      setData("favorites", '["Stockholm,SE", "Madrid,ES", "New York,US"]')
-    }
+    let value = this.props.header.searchString;
+    this.state.favorite ? addToFavorites(value) : removeFromFavorites(value)
   }
   render() {
     let switchIcon, starIcon;
-    this.state.route === 'map' ? switchIcon = "ios-pulse-strong" : switchIcon = "ios-navigate"
-    this.state.favorite ? starIcon = "ios-star" : starIcon = "ios-star-outline"
+    this.state.route === 'map' ? switchIcon = "ios-pulse-strong" : switchIcon = "ios-navigate";
+    this.state.favorite ? starIcon = "ios-star" : starIcon = "ios-star-outline";
     return (
       <View style={styles.container}>
         <View style={styles.info}>
-          <Detail route={this.state.route} region={this.state.region}/>
+          <Detail rawData={this.state.rawData} route={this.state.route} region={this.state.region}/>
           <TouchableOpacity style={styles.switchMode} onPress={this._changeDetail}>
             <Icon style={styles.backBtn} name={switchIcon} size={25}/>
           </TouchableOpacity>
