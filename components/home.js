@@ -7,7 +7,10 @@ import React, {
   ListView,
   Modal,
   Text,
+  ToolbarAndroid,
 } from 'react-native';
+
+import Toolbar from './toolbar/toolbar';
 
 // function for fetching weather
 import { fetchWeather } from '../js/fetchData';
@@ -115,10 +118,11 @@ export default class Home extends Component {
     output = <SearchResult data={this.state.list} resetList={this._resetList} navigator={this.props.navigator}/> :
     output = <CurrentLocation navigator={this.props.navigator}
           location={this.state.location}
-          />;         
+          />;
     return (
       <View
         style={{flex:1}}>
+        <Toolbar setList={this._setList} resetList={this._resetList} />
         <SearchBar showProfile={() => this._setModalVisible(true)} setList={this._setList} resetList={this._resetList}/>
         { output }
         <Modal

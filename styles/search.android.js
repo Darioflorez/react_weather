@@ -23,4 +23,8 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginRight: 10,
   },
+  textInput: {
+    height: 10,
+    borderWidth: 10
+  }
 });
