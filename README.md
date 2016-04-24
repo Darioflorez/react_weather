@@ -9,3 +9,9 @@
 1. `git clone git@github.com:Darioflorez/react_weather.git`
 2. `cd react_weather`
 3. `npm install && rnpm link`
+IOS
+4. `react-native run-ios`
+Android
+4. start your Android emulator
+5. `react-native start`
+6. `react-native run-android`
