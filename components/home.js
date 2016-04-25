@@ -16,7 +16,7 @@ import Toolbar from './toolbar/toolbar';
 import { fetchWeather } from '../js/fetchData';
 
 // Child Components
-import SearchBar from './search';
+import SearchBar from './toolbar/searchBar';
 import SearchResult from './searchResult';
 import CurrentLocation from './currentLocation';
 import Profile from './profile';
