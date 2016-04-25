@@ -9,8 +9,8 @@ import React, {
   TouchableOpacity,
 } from 'react-native';
 
-import { styles } from '../styles/search'
-import { fetchWeather } from '../js/fetchData';
+import { styles } from '../../styles/search'
+import { fetchWeather } from '../../js/fetchData';
 
 var Icon = require('react-native-vector-icons/Ionicons')
 

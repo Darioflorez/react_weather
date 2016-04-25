@@ -8,9 +8,11 @@ import React, {
   StyleSheet,
   ListView,
   StatusBar,
+  Platform,
 } from 'react-native';
 
 import Detail from './detail';
+import DetailBar from './toolbar/detailBar';
 import { styles } from '../styles/weatherDetail';
 import { addToFavorites, removeFromFavorites } from '../js/storage';
 import { fetchWeatherList } from '../js/fetchData';
@@ -87,11 +89,28 @@ export default class WeatherDetail extends React.Component {
     this.state.favorite ? addToFavorites(value) : removeFromFavorites(value)
   }
   render() {
-    let switchIcon, starIcon;
+    let switchIcon;
     this.state.route === 'map' ? switchIcon = "ios-pulse-strong" : switchIcon = "ios-navigate";
-    this.state.favorite ? starIcon = "ios-star" : starIcon = "ios-star-outline";
+    
+    let barIOS, barAndroid;
+    if(Platform.OS === 'ios'){
+      barIOS = <DetailBar
+                  name={this.props.header.name}
+                  favorite={this.state.favorite}
+                  toggleFavorite={this._toggleFavorite}
+                  onBack={this._onBack}
+                />
+    } else {
+      barAndroid = <DetailBar
+                    name={this.props.header.name}
+                    favorite={this.state.favorite}
+                    toggleFavorite={this._toggleFavorite}
+                    onBack={this._onBack}
+                  />;
+    }
     return (
       <View style={styles.container}>
+        {barAndroid}
         <View style={styles.info}>
           <Detail rawData={this.state.rawData} route={this.state.route} region={this.state.region}/>
           <TouchableOpacity style={styles.switchMode} onPress={this._changeDetail}>
@@ -104,15 +123,7 @@ export default class WeatherDetail extends React.Component {
             renderRow={this._renderRow}
           />
         </View>
-        <View style={styles.overlay}>
-          <TouchableOpacity onPress={this._onBack}>
-            <Icon style={styles.backBtn} name="ios-arrow-left" size={30} color="blue"/>
-          </TouchableOpacity>
-          <Text style={{padding:10, fontSize:20}}>{this.props.header.name}</Text>
-          <TouchableOpacity onPress={this._toggleFavorite}>
-            <Icon style={styles.backBtn} name={starIcon} size={25} color="blue"/>
-          </TouchableOpacity>
-        </View>
+        {barIOS}
       </View>
     );
   }
