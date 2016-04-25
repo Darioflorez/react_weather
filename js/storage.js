@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * Favorites will be saved in the form of
  * key => "["asdas","sadasd","sadasd"]"
  * the list can be retrieved by calling JSON.parse
- * 
+ *
  */
 
 import {
@@ -25,11 +25,16 @@ let getFavorites = function(){
 }
 
 let addToFavorites= function(value){
-  getFavorites().then((data) => {
-    //console.log(data);
-    let stringList = JSON.parse(data);
+  console.log(value);
+  getFavorites()
+  .then((data) => {
+    console.log(data);
+    let stringList;
+    data ? stringList = JSON.parse(data) : stringList = [];
     stringList.push(value);
     AsyncStorage.setItem('favorites', JSON.stringify(stringList));
+  }).catch((error) => {
+    console.log("storage.js Error when adding to favorites!", error);
   })
 }
 
@@ -46,9 +51,8 @@ export { setData, getAllData, getFavorites, addToFavorites, removeFromFavorites 
 
 /**
  * Usage
- * 
+ *
  *     getAllData()
       .then( items => console.log(items) )
       .catch( err => console.log("Error retrieving data: ", err) );
  */
-

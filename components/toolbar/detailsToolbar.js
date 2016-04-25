@@ -11,7 +11,7 @@ import React, {
 
 var Icon = require('react-native-vector-icons/Ionicons');
 
-export default class Toolbar extends Component {
+export default class DetailsToolbar extends Component {
 
   constructor(props){
     super(props);
@@ -40,7 +40,7 @@ export default class Toolbar extends Component {
 }
 
 const toolbarActions = [
-  { title: 'favorites', iconName: 'android-favorite', show: 'ifRoom' },
+  { title: 'favorites', iconName: 'android-favorite-outline', show: 'ifRoom' },
 ];
 
 const styles = StyleSheet.create({

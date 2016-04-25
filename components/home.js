@@ -122,7 +122,6 @@ export default class Home extends Component {
     return (
       <View
         style={{flex:1}}>
-        <Toolbar setList={this._setList} resetList={this._resetList} />
         <SearchBar showProfile={() => this._setModalVisible(true)} setList={this._setList} resetList={this._resetList}/>
         { output }
         <Modal
@@ -136,6 +135,8 @@ export default class Home extends Component {
     );
   }
 }
+
+//<Toolbar setList={this._setList} resetList={this._resetList} />
 
 const styles = StyleSheet.create({
 

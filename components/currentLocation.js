@@ -35,7 +35,7 @@ export default class CurrentLocation extends Component {
       }),
     }
   };
-  
+
   componentDidMount() {
     getFavorites().catch( error => console.log("Error retrieving data:", error) )
     .done( data => {
@@ -44,9 +44,9 @@ export default class CurrentLocation extends Component {
           favouriteLocations: this.state.favouriteLocations.cloneWithRows(JSON.parse(data))
         });
       }
-    })   
+    })
   }
-  
+
   _currentLocationPress(){
     //console.log('current location pressed!');
     let searchString = this.props.location.name+","+this.props.location.country;
@@ -61,13 +61,17 @@ export default class CurrentLocation extends Component {
   }
 
   _renderFavourites(rowData: string, sectionID: number, rowID: number){
+
+    // this Component have to be under <Text>{rowData}</Text>{arrow}
+    const arrow = <Icon style={{paddingRight:10}}name="ios-arrow-right" size={30} color="black"/>;
+
     return(
       <TouchableHighlight onPress={() => this._pressRow(rowID, rowData)} underlayColor={'#D1EEFC'} >
         <View style={styles.item}>
           <Text style={{fontWeight: '300',fontFamily: 'Helvetica Neue',padding: 20 }}>
             {rowData}
           </Text>
-          <Icon style={{paddingRight:10}}name="ios-arrow-right" size={30} color="blue"/>
+
         </View>
       </TouchableHighlight>
     );

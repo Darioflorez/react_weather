@@ -35,7 +35,7 @@ export default class WeatherDetail extends React.Component {
     let list = []
     fetchWeatherList(this.props.header.searchString)
     .then(
-      (data) =>  {   
+      (data) =>  {
       this.setState({
         rawData: data,
         dataSource: this.state.dataSource.cloneWithRows(data),
@@ -48,11 +48,11 @@ export default class WeatherDetail extends React.Component {
       })
     })
     .catch( error => console.log("Error when fetching weather: ", error))
-    
+
   }
   _changeDetail(){
     if(this.state.route === 'map'){
-      this.setState({route: 'graph'})  
+      this.setState({route: 'graph'})
     }
     else{
       this.setState({route: 'map'})
@@ -83,6 +83,7 @@ export default class WeatherDetail extends React.Component {
   _toggleFavorite(){
     this.setState({favorite: !this.state.favorite})
     let value = this.props.header.searchString;
+    //console.log("VALUE", value);
     this.state.favorite ? addToFavorites(value) : removeFromFavorites(value)
   }
   render() {
@@ -116,5 +117,3 @@ export default class WeatherDetail extends React.Component {
     );
   }
 }
-
-

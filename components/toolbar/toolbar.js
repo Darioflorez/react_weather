@@ -20,7 +20,7 @@ export default class Toolbar extends Component {
     this.state = {
       titleColor: 'white',
       subtitleColor: 'white',
-      navIconName: "android-arrow-back",
+      navIconName: null,//"android-arrow-back",
       actions: toolbarActions,
       title: "React Weather",
     }

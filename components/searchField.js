@@ -51,6 +51,8 @@ export default class SearchField extends Component {
       <TextInput
         style={styles.textInput}
         placeholder={placeholder}
+        placeholderTextColor={"white"}
+        underlineColorAndroid ={"white"}
         onChangeText={(text) => this._onChangeText(text)}
         value={this.state.text}
         maxLength={12}
