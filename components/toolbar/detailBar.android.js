@@ -2,7 +2,6 @@
 
 import React, {
   Component,
-  ToolbarAndroid,
   StyleSheet,
   TextInput,
   View,
@@ -11,7 +10,7 @@ import React, {
 
 var Icon = require('react-native-vector-icons/Ionicons');
 
-export default class DetailsToolbar extends Component {
+export default class DetailBar extends Component {
 
   constructor(props){
     super(props);
@@ -24,12 +23,15 @@ export default class DetailsToolbar extends Component {
     }
   };
 
+
+
   render() {
     return (
       <Icon.ToolbarAndroid
         title={this.state.title}
         titleColor={this.state.titleColor}
         navIconName={this.state.navIconName}
+        onIconClicked={this.props.onBack}
         style={styles.toolbar}
         elevation={4}
         actions={this.state.actions}

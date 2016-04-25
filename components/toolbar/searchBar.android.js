@@ -13,7 +13,7 @@ import SearchField from '../searchField'
 
 var Icon = require('react-native-vector-icons/Ionicons');
 
-export default class Toolbar extends Component {
+export default class SearchBar extends Component {
 
   constructor(props){
     super(props);
@@ -69,5 +69,5 @@ const styles = StyleSheet.create({
   }
 });
 
-Toolbar.propTypes = { search: React.PropTypes.bool };
-Toolbar.defaultProps = { search: true };
+SearchBar.propTypes = { search: React.PropTypes.bool };
+SearchBar.defaultProps = { search: true };

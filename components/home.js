@@ -7,10 +7,7 @@ import React, {
   ListView,
   Modal,
   Text,
-  ToolbarAndroid,
 } from 'react-native';
-
-import Toolbar from './toolbar/toolbar';
 
 // function for fetching weather
 import { fetchWeather } from '../js/fetchData';
@@ -135,8 +132,6 @@ export default class Home extends Component {
     );
   }
 }
-
-//<Toolbar setList={this._setList} resetList={this._resetList} />
 
 const styles = StyleSheet.create({
 

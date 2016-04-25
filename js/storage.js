@@ -28,7 +28,6 @@ let addToFavorites= function(value){
   console.log(value);
   getFavorites()
   .then((data) => {
-    console.log(data);
     let stringList;
     data ? stringList = JSON.parse(data) : stringList = [];
     stringList.push(value);
