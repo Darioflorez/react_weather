@@ -85,13 +85,13 @@ export default class WeatherDetail extends React.Component {
   _toggleFavorite(){
     this.setState({favorite: !this.state.favorite})
     let value = this.props.header.searchString;
-    //console.log("VALUE", value);
+    console.log("VALUE", value);
     this.state.favorite ? addToFavorites(value) : removeFromFavorites(value)
   }
   render() {
     let switchIcon;
     this.state.route === 'map' ? switchIcon = "ios-pulse-strong" : switchIcon = "ios-navigate";
-    
+
     let barIOS, barAndroid;
     if(Platform.OS === 'ios'){
       barIOS = <DetailBar
