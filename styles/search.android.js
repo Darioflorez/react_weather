@@ -13,18 +13,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  input: {
-    flex: 1,
-    height: 30,
-    borderColor: '#C7C7CC',
-    padding: 5,
-    paddingLeft: 10,
-    borderRadius: 5,
-    backgroundColor: 'white',
-    marginRight: 10,
-  },
   textInput: {
-    height: 10,
-    borderWidth: 10
+    height: 40,
+    borderWidth: 1,
   }
 });

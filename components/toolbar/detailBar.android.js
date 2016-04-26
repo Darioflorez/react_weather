@@ -8,7 +8,8 @@ import React, {
   Text
 } from 'react-native';
 
-var Icon = require('react-native-vector-icons/Ionicons');
+import Icon from 'react-native-vector-icons/Ionicons';
+import {styles} from '../../styles/toolbar';
 
 export default class DetailBar extends Component {
 
@@ -57,14 +58,3 @@ export default class DetailBar extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  toolbar:{
-    backgroundColor: '#38aecc',
-    height: 56, //Androids default value
-  },
-  textInput: {
-    height: 10,
-    borderWidth: 10
-  }
-});

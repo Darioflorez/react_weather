@@ -32,6 +32,8 @@ const location = {
   temp_max: null
 };
 
+var watchID: number;
+
 export default class Home extends Component {
 
   constructor(props){
@@ -53,18 +55,22 @@ export default class Home extends Component {
   };
 
   _getCurrentLocation(){
-    return new Promise(function(resolve, reject){
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          resolve(position.coords);
-        },
-        (error) => {
-          reject(Error(error.message));
-          alert("Location not found");
-        },
-        {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-      );
-    });
+      return new Promise(function(resolve, reject){
+        if ("geolocation" in navigator) {
+            /* geolocation is available */
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              resolve(position.coords);
+            },
+            /*Error if you use this variant of the function on Android*/
+            /*(error) => alert(error),
+            {enableHighAccuracy: true, maximumAge:30000, timeout:27000}*/
+          );
+        } else {
+          /* geolocation IS NOT available */
+          reject(Error("geolocation IS NOT available"));
+        }
+      });
   }
 
   _setList(list){
@@ -100,6 +106,10 @@ export default class Home extends Component {
     }).catch((error) => {
         console.log("Get current Location", error);
     });
+  }
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(watchID);
   }
   _setModalVisible(visible) {
     this.setState({modalVisible: visible});

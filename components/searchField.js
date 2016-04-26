@@ -53,6 +53,8 @@ export default class SearchField extends Component {
         placeholder={placeholder}
         placeholderTextColor={"white"}
         underlineColorAndroid ={"white"}
+        autoFocus={true}
+        keyboardType={"web-search"}
         onChangeText={(text) => this._onChangeText(text)}
         value={this.state.text}
         maxLength={12}
@@ -62,4 +64,4 @@ export default class SearchField extends Component {
   }
 }
 
-const placeholder = "Sök...                                                                                         ";
+const placeholder = "Sök...                                                                 ";
