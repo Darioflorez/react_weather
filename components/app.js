@@ -25,24 +25,25 @@ export default class App extends React.Component {
       return (<WeatherDetail favorite={route.favorite} header={route.header} navigator={navigator}/>);
     }
   }
-  configureScene(route, routeStack){
-    return Navigator.SceneConfigs.HorizontalSwipeJump
+
+
+  _configureScene(route, routeStack){
+
+    return {
+      ...Navigator.SceneConfigs.HorizontalSwipeJump,
+      gestures: {}
+    }
   }
+
   render() {
     return (
       <Navigator
         ref='app'
         initialRoute={{id: 'login'}}
         renderScene={this._renderScene}
-        configureScene={ this.configureScene }
+        configureScene={ this._configureScene }
       />
 
     );
   }
 }
-
-const styles = StyleSheet.create({
-  app:{
-    flex:1,
-  }
-})
