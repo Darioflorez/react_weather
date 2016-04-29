@@ -22,7 +22,7 @@ export default class Login extends React.Component {
   render() {
     return (
       <LinearGradient colors={['#EF4DB6', '#5856D6']} style={{flex:1}}>
-        <LoginForm onLogin={this._onLogin}/>
+        <LoginForm onLogin={this.props.onLogin}/>
       </LinearGradient>
     );
   }

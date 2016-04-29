@@ -51,7 +51,6 @@ export default class Home extends Component {
     this._setList = this._setList.bind(this);
     this._resetList = this._resetList.bind(this);
     this._setModalVisible = this._setModalVisible.bind(this);
-    this._onLogout = this._onLogout.bind(this);
   };
 
   _getCurrentLocation(){
@@ -114,11 +113,7 @@ export default class Home extends Component {
   _setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
-  _onLogout(){
-    console.log("logout!")
-    this.setState({modalVisible: false});
-    this.props.navigator.replace({id: 'login'})
-  }
+
   render() {
     let output;
     this.state.listLength >= 1 ?
@@ -136,7 +131,7 @@ export default class Home extends Component {
           transparent={this.state.transparent}
           visible={this.state.modalVisible}
           onRequestClose={() => {this._setModalVisible(false)}}>
-          <Profile onLogout={() => this._onLogout} onClose={() => this._setModalVisible(false)}/>
+          <Profile onLogout={this.props.onLogout} onClose={() => this._setModalVisible(false)}/>
         </Modal>
       </View>
     );

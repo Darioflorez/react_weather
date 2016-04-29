@@ -26,7 +26,7 @@ export default class Profile extends Component {
           <TouchableOpacity onPress={this.props.onClose}>
             <Icon style={{paddingRight:10}}name="ios-arrow-down" size={60} color="white"/>
           </TouchableOpacity>
-          <TouchableOpacity style={{flexDirection: 'row', marginBottom: 60,padding:10,borderWidth: 1,borderColor:'white',borderRadius:10}}onPress={this.props.onLogout()}>
+          <TouchableOpacity style={{flexDirection: 'row', marginBottom: 60,padding:10,borderWidth: 1,borderColor:'white',borderRadius:10}} onPress={this.props.onLogout}>
             <Icon style={{paddingRight:10}}name="ios-arrow-left" size={30} color="white"/>
             <Text style={{color: 'white',padding: 2,fontSize: 20 }}> Logga ut </Text>
           </TouchableOpacity>

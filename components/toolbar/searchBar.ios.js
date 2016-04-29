@@ -29,7 +29,7 @@ export default class SearchBar extends Component {
   _onChangeText(input: string){
     this.setState({text: input});
     let _this = this;
-    
+
     if(this.state.text.length > 2){
         //console.log(this.state.text.length);
         fetchWeather(this.state.text)
@@ -61,7 +61,7 @@ export default class SearchBar extends Component {
           onSubmitEditing={(text) => {}}
           />
           <TouchableOpacity onPress={this.props.showProfile}>
-            <Icon name="ios-person" size={30} color="#007AFF"/>
+            <Icon name="ios-person" size={30} color="#34AADC"/>
           </TouchableOpacity>
       </View>
     );

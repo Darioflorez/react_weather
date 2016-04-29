@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: 20,
   },
-  btn: {    
+  btn: {
     marginTop: 25,
     padding: 10,
     borderRadius: 5,
@@ -29,12 +29,12 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    
   },
   btnLabel: {
     fontFamily: 'Arial',
     fontSize: 15,
     color: 'white',
+    backgroundColor: 'transparent',
   },
   logoView:{
     flex: 0.5

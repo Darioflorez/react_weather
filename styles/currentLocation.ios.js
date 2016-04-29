@@ -7,16 +7,16 @@ export const styles = StyleSheet.create({
       flexDirection: 'column',
 
     },
-    header: { 
-      fontSize: 30,
+    header: {
+      fontSize: 40,
       padding: 10,
-      fontWeight: '100',
+      fontWeight: '200',
       fontFamily: 'Helvetica Neue',
       color: 'white',
     },
     tempeture:{
       fontSize: 50,
-      fontWeight: '100',
+      fontWeight: '200',
       fontFamily: 'Helvetica Neue',
       color: 'white',
       paddingLeft: 10,

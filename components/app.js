@@ -1,49 +1,77 @@
 'use strict';
 
 import React, {
+  PropTypes,
   View,
   Text,
-  Image,
   StyleSheet,
-  Navigator,
+  TextInput,
+  Image,
+  TabBarIOS,
+  TouchableOpacity,
 } from 'react-native';
 
-// Screens
-import Login from './login';
-import Home from './home';
-import WeatherDetail from './weatherDetail';
+import Weather from './weather';
+import Contacts from './contacts';
+import Camera from './camera';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+import { styles } from '../styles/loginForm'
+
+
+
 
 export default class App extends React.Component {
-  _renderScene(route, navigator){
-    if(route.id === 'login'){
-      return (<Login navigator={navigator}/>);
-    }
-    if(route.id === 'home'){
-      return (<Home navigator={navigator}/>);
-    }
-    if(route.id === 'detail'){
-      return (<WeatherDetail favorite={route.favorite} header={route.header} navigator={navigator}/>);
-    }
-  }
-
-
-  _configureScene(route, routeStack){
-
-    return {
-      ...Navigator.SceneConfigs.HorizontalSwipeJump,
-      gestures: {}
-    }
+  constructor(props){
+    super(props);
+    this.state = {
+      route: 'weather'
+    };
   }
 
   render() {
+    const route = this.state.route;
+    console.log(this.props)
     return (
-      <Navigator
-        ref='app'
-        initialRoute={{id: 'login'}}
-        renderScene={this._renderScene}
-        configureScene={ this._configureScene }
-      />
-
+      <TabBarIOS
+        tintColor="#34AADC"
+        barTintColor="#F7F7F7"
+      >
+        <Icon.TabBarItem
+          iconName="ios-partlysunny-outline"
+          selectedIconName="ios-partlysunny"
+          selected={route === 'weather'}
+          onPress={() => {
+            this.setState({
+              route: 'weather',
+            });
+          }}>
+          <Weather onLogout={this.props.onLogout}/>
+        </Icon.TabBarItem>
+        <Icon.TabBarItem
+          iconName="ios-camera-outline"
+          selectedIconName="ios-camera"
+          selected={route === 'camera'}
+          onPress={() => {
+            this.setState({
+              route: 'camera',
+            });
+          }}>
+          <Camera />
+        </Icon.TabBarItem>
+        <Icon.TabBarItem
+          iconName="ios-people-outline"
+          selectedIconName="ios-people"
+          selected={route === 'contacts'}
+          onPress={() => {
+            this.setState({
+              route: 'contacts',
+            });
+          }}>
+          <Contacts />
+        </Icon.TabBarItem>
+      </TabBarIOS>
     );
   }
 }
+
