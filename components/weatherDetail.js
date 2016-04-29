@@ -80,7 +80,7 @@ export default class WeatherDetail extends React.Component {
     );
   }
   _onBack(){
-    this.props.navigator.resetTo({id: 'home'})
+    this.props.navigator.resetTo({id: 'weather'})
   }
   _toggleFavorite(){
     this.setState({favorite: !this.state.favorite})

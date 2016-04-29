@@ -34,7 +34,7 @@ const location = {
 
 var watchID: number;
 
-export default class Home extends Component {
+export default class Weather extends Component {
 
   constructor(props){
     super(props);
@@ -129,7 +129,8 @@ export default class Home extends Component {
     return (
       <View
         style={{flex:1}}>
-        <SearchBar showProfile={() => this._setModalVisible(true)} setList={this._setList} resetList={this._resetList}/>
+        <SearchBar showProfile={() => this._setModalVisible(true)} setList={this._setList} resetList={this._resetList}
+        toggleDrawer={this.props.toggleDrawer}/>
         { output }
         <Modal
           animated={this.state.animated}
@@ -142,7 +143,3 @@ export default class Home extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-
-});
