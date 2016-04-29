@@ -5,31 +5,41 @@ export const styles = StyleSheet.create({
     container: {
       flex: 1,
       flexDirection: 'column',
-      margin: 10,
     },
     header: {
       fontSize: 30,
       padding: 10,
+      color: 'white',
     },
     currentLocation: {
       flex: 0.4,
-      borderBottomWidth: 1,
-      borderBottomColor: '#C7C7CC',
+      backgroundColor: 'skyblue',
+      padding: 20,
     },
     currentView:{
       flex:1,
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: 20,
+    },
+    tempeture:{
+      fontSize: 50,
+      fontWeight: '100',
+      fontFamily: 'Helvetica Neue',
+      color: 'white',
+      paddingLeft: 10,
     },
     list: {
     },
     item: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
       alignItems: 'center',
+      justifyContent: 'center',
       borderBottomWidth: 1,
       borderBottomColor: '#C7C7CC',
+      height: 56,
+    },
+    favoritesText: {
+      fontWeight: '300',
+      fontFamily: 'Helvetica Neue',
     }
 });

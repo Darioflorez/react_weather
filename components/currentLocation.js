@@ -68,7 +68,7 @@ export default class CurrentLocation extends Component {
     return(
       <TouchableHighlight onPress={() => this._pressRow(rowID, rowData)} underlayColor={'#D1EEFC'} >
         <View style={styles.item}>
-          <Text style={{fontWeight: '300',fontFamily: 'Helvetica Neue',padding: 20 }}>
+          <Text style={styles.favoritesText}>
             {rowData}
           </Text>
 
@@ -84,7 +84,9 @@ export default class CurrentLocation extends Component {
         <TouchableOpacity style={styles.currentLocation} onPress={this._currentLocationPress}>
           <Text style={styles.header}>{this.props.location.name}</Text>
           <View style={styles.currentView}>
-            <Icon style={{color: 'white',}} name="ios-partlysunny-outline" size={100} />
+            <Icon style={{color: 'white',}}
+            name="ios-partlysunny-outline" size={100}
+            />
             <Text style={styles.tempeture}>{this.props.location.temp}°c</Text>
           </View>
         </TouchableOpacity>

@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
       flexDirection: 'column',
 
     },
-    header: { 
+    header: {
       fontSize: 30,
       padding: 10,
       fontWeight: '100',
@@ -43,5 +43,10 @@ export const styles = StyleSheet.create({
       alignItems: 'center',
       borderBottomWidth: 1,
       borderBottomColor: '#C7C7CC',
+    },
+    favoritesText: {
+      fontWeight: '300',
+      fontFamily: 'Helvetica Neue',
+      padding: 20,
     }
 });

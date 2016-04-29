@@ -26,6 +26,7 @@ export default class WeatherNavigator extends React.Component {
       case 'detail':
         return (<WeatherDetail favorite={route.favorite} header={route.header} navigator={navigator}/>);
       default:
+        break;
 
     }
   }
