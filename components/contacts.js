@@ -12,6 +12,8 @@ import React, {
 // you can link this with:
 // rnpm link 'react-native-contacts'
 import Contacts from 'react-native-contacts';
+import ContactRow from './contactsPage/contactRow';
+import ContactsBar from './toolbar/contactsBar';
 
 import { styles } from '../styles/loginForm'
 
@@ -40,18 +42,19 @@ export default class Contact extends React.Component {
 
   _renderRow(rowData, rowSeg, rowId){
     return(
-      <View>
-       <Text>{rowData.givenName}</Text>
-      </View>
+      <ContactRow contact={rowData}/>
     );
   }
 
   render() {
     return (
-      <ListView
-        dataSource={this.state.contacts}
-        renderRow={this._renderRow}
-      />
+      <View style={{flex:1}}> 
+        <ContactsBar />
+        <ListView
+          dataSource={this.state.contacts}
+          renderRow={this._renderRow}
+        />
+      </View>
     );
   }
 }
