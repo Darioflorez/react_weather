@@ -12,19 +12,18 @@ import React, {
 // you can link this with:
 // rnpm link 'react-native-contacts'
 import Contacts from 'react-native-contacts';
-import ContactRow from './contactsPage/contactRow';
-import ContactsBar from './toolbar/contactsBar';
+import ContactRow from './contactRow';
+import ContactsBar from '../toolbar/contactsBar';
 
-import { styles } from '../styles/loginForm'
+import { styles } from '../../styles/contacts'
 
-var Icon = require('react-native-vector-icons/FontAwesome')
-
-export default class Contact extends React.Component {
+export default class ContactsIndex extends React.Component {
   constructor(){
     super();
     this.state = {
       contacts: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     }
+    this._renderRow = this._renderRow.bind(this);
   }
   componentDidMount(){
     Contacts.getAll((err, contacts) => {
@@ -42,7 +41,7 @@ export default class Contact extends React.Component {
 
   _renderRow(rowData, rowSeg, rowId){
     return(
-      <ContactRow contact={rowData}/>
+      <ContactRow rowData={rowData} rowId={rowId} navigator={this.props.navigator}/>
     );
   }
 

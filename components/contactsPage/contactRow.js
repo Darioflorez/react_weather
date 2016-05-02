@@ -9,22 +9,31 @@ import React, {
   TouchableOpacity,
 } from 'react-native';
 
-var Icon = require('react-native-vector-icons/FontAwesome')
+var Icon = require('react-native-vector-icons/Ionicons')
 
 import { styles } from '../../styles/contactRow';
 
 export default class ContactRow extends React.Component {
   constructor(){
     super();
+    this._pressRow = this._pressRow.bind(this);
+  }
+  
+  _pressRow(rowID: number, rowData: string){
+    this.props.navigator.push({id: 'contactDetail', data: rowData})
   }
 
   render() {
-    const contact = this.props.contact;
+    const rowData = this.props.rowData;
+    const rowID = this.props.rowId;
     return (
-      <View style={styles.container}>
-        <Text style={styles.firstName}>{contact.givenName}</Text>
-        <Text style={styles.lastName}>{contact.familyName}</Text>
-      </View>
+      <TouchableOpacity onPress={() => this._pressRow(rowID, rowData)} style={styles.container}>
+        <View style={styles.name}>
+          <Text style={styles.firstName}>{rowData.givenName}</Text>
+          <Text style={styles.lastName}>{rowData.familyName}</Text>
+        </View>
+        <Icon name="ios-arrow-right" size={28} color="#34AADC"/>
+      </TouchableOpacity>
     );
   }
 }

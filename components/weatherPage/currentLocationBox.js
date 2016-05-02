@@ -71,7 +71,6 @@ export default class CurrentLocationBox extends Component {
           <Text style={styles.favoritesText}>
             {rowData}
           </Text>
-
         </View>
       </TouchableHighlight>
     );

@@ -12,7 +12,7 @@ import React, {
 } from 'react-native';
 
 import WeatherNavigator from './weatherNavigator';
-import Contacts from './contacts';
+import ContactNavigator from './contactNavigator';
 import Camera from './camera';
 
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -66,7 +66,7 @@ export default class Home extends React.Component {
               route: 'contacts',
             });
           }}>
-          <Contacts />
+          <ContactNavigator />
         </Icon.TabBarItem>
       </TabBarIOS>
     );

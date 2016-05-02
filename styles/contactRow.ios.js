@@ -4,11 +4,16 @@ export const styles = StyleSheet.create({
   container: {
     marginLeft: 10,
     marginRight: 10,
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: 4,
+    paddingBottom: 4,
     borderBottomWidth: 1,
     borderBottomColor: '#8E8E93',
     flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  name:{
+    flexDirection: 'row',
+    paddingTop:5,
   },
   firstName: {
     paddingRight: 5,
