@@ -12,15 +12,15 @@ import React, {
   Image,
 } from 'react-native';
 
-import { styles } from '../styles/currentLocation';
-import { fetchWeather } from '../js/fetchData';
-import { getFavorites, } from '../js/storage';
+import { styles } from '../../styles/currentLocation';
+import { fetchWeather } from '../../js/fetchData';
+import { getFavorites, } from '../../js/storage';
 
 var Icon = require('react-native-vector-icons/Ionicons')
 
 const {height, width} = Dimensions.get('window');
 
-export default class CurrentLocation extends Component {
+export default class CurrentLocationBox extends Component {
 
   constructor(props){
     super(props);

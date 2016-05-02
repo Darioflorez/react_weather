@@ -11,7 +11,6 @@ import React, {
 // Screens
 import Login from './login';
 import Home from './home';
-import WeatherDetail from './weatherDetail';
 
 export default class App extends React.Component {
   _renderScene(route, navigator){
@@ -22,7 +21,6 @@ export default class App extends React.Component {
       return (<Home navigator={navigator}/>);
     }
   }
-
 
   _configureScene(route, routeStack){
 

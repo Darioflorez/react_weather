@@ -10,13 +10,13 @@ import React, {
 } from 'react-native';
 
 // function for fetching weather
-import { fetchWeather } from '../js/fetchData';
+import { fetchWeather } from '../../js/fetchData';
 
 // Child Components
-import SearchBar from './toolbar/searchBar';
-import SearchResult from './searchResult';
-import CurrentLocation from './currentLocation';
-import Profile from './profile';
+import SearchBar from '../toolbar/searchBar';
+import SearchResult from '../searchResult';
+import CurrentLocationBox from './currentLocationBox';
+import Profile from '../profile';
 
 
 // Data structures
@@ -63,8 +63,8 @@ export default class Weather extends Component {
               resolve(position.coords);
             },
             /*Error if you use this variant of the function on Android*/
-            /*(error) => alert(error),
-            {enableHighAccuracy: true, maximumAge:30000, timeout:27000}*/
+            (error) => alert(error),
+            //{enableHighAccuracy: true, maximumAge:30000, timeout:27000}*/
           );
         } else {
           /* geolocation IS NOT available */
@@ -123,7 +123,7 @@ export default class Weather extends Component {
     let output;
     this.state.listLength >= 1 ?
     output = <SearchResult data={this.state.list} resetList={this._resetList} navigator={this.props.navigator}/> :
-    output = <CurrentLocation navigator={this.props.navigator}
+    output = <CurrentLocationBox navigator={this.props.navigator}
           location={this.state.location}
           />;
     return (

@@ -12,10 +12,10 @@ import React, {
 } from 'react-native';
 
 import Detail from './detail';
-import DetailBar from './toolbar/detailBar';
-import { styles } from '../styles/weatherDetail';
-import { addToFavorites, removeFromFavorites } from '../js/storage';
-import { fetchWeatherList } from '../js/fetchData';
+import DetailBar from '../toolbar/detailBar';
+import { styles } from '../../styles/weatherDetail';
+import { addToFavorites, removeFromFavorites } from '../../js/storage';
+import { fetchWeatherList } from '../../js/fetchData';
 
 var Icon = require('react-native-vector-icons/Ionicons')
 

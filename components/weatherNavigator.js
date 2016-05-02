@@ -6,11 +6,12 @@ import React, {
   Image,
   StyleSheet,
   Navigator,
+  Platform,
 } from 'react-native';
 
 // Screens
-import Weather from './weather';
-import WeatherDetail from './weatherDetail';
+import Weather from './weatherPage/weather';
+import WeatherDetail from './weatherPage/weatherDetail';
 
 export default class WeatherNavigator extends React.Component {
   constructor(props){
@@ -21,8 +22,11 @@ export default class WeatherNavigator extends React.Component {
   _renderScene(route, navigator){
     switch (route.id) {
       case 'weather':
-        return (<Weather navigator={navigator}
-          toggleDrawer={this.props.toggleDrawer}/>);
+        if(Platform.OS === 'ios'){
+          return <Weather navigator={navigator}/>
+        } else {
+          return <Weather navigator={navigator} toggleDrawer={this.props.toggleDrawer}/>
+        }
       case 'detail':
         return (<WeatherDetail favorite={route.favorite} header={route.header} navigator={navigator}/>);
       default:

@@ -1,6 +1,7 @@
 package com.react_weather;
 
 import com.facebook.react.ReactActivity;
+import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.AirMaps.AirPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -38,6 +39,7 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new ReactNativeContacts(),
             new LinearGradientPackage(),
             new AirPackage(),
             new VectorIconsPackage()
