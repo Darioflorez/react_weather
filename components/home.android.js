@@ -16,7 +16,6 @@ import {styles} from '../styles/toolbar';
 import MenuItem from './menu/menuItem';
 import WeatherNavigator from './weatherNavigator';
 
-
 const MENU = "android-menu";
 const BACK = "android-arrow-back";
 
