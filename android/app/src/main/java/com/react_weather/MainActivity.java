@@ -2,6 +2,7 @@ package com.react_weather;
 
 import com.facebook.react.ReactActivity;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
+import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.AirMaps.AirPackage;
 import com.oblador.vectoricons.VectorIconsPackage;

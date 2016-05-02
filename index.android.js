@@ -9,7 +9,7 @@ import React, {
 } from 'react-native';
 
 import App from './components/app';
-import PlayGround from './components/playGround';
+//import PlayGround from './components/playGround';
 
 class react_weather extends Component {
   render() {

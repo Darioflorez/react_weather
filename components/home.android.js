@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {styles} from '../styles/toolbar';
 import MenuItem from './menu/menuItem';
 import WeatherNavigator from './weatherNavigator';
+import Contact from './contacts';
 
 const MENU = "android-menu";
 const BACK = "android-arrow-back";
@@ -23,7 +24,7 @@ const BACK = "android-arrow-back";
 // "android-camera"
 // "android-contacts"
 
-export default class PlayGround extends Component {
+export default class Home extends Component {
 
   constructor(props){
     super(props);
@@ -112,7 +113,7 @@ export default class PlayGround extends Component {
       case 'camera':
           return (<Camera/>);
       case 'contacts':
-          return (<Contacts/>);
+          return (<Contact/>);
       case 'weather':
           return (<WeatherNavigator toggleDrawer={this._toggleDrawer}/>);
       default:
@@ -172,7 +173,7 @@ export default class PlayGround extends Component {
   }
 }
 
-class Contacts extends React.Component{
+/*class Contacts extends React.Component{
   render(){
     return (
       <View style={{flex:1, alignItems:'center', justifyContent: 'center',
@@ -183,7 +184,7 @@ class Contacts extends React.Component{
       </View>
     );
   }
-}
+}*/
 
 class Camera extends React.Component{
   render(){
