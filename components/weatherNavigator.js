@@ -6,23 +6,32 @@ import React, {
   Image,
   StyleSheet,
   Navigator,
+  Platform,
 } from 'react-native';
 
 // Screens
-import Weather from './weather';
-import WeatherDetail from './weatherDetail';
+import Weather from './weatherPage/weather';
+import WeatherDetail from './weatherPage/weatherDetail';
 
 export default class WeatherNavigator extends React.Component {
   constructor(props){
     super(props);
     this._renderScene = this._renderScene.bind(this);
+    this._weatherView = this._weatherView.bind(this);
+  }
+  
+  _weatherView(){
+      if(Platform.OS === 'ios'){
+        return <Weather navigator={navigator}/>
+      } else {
+        return <Weather navigator={navigator} toggleDrawer={this.props.toggleDrawer}/>
+      }
   }
 
   _renderScene(route, navigator){
     switch (route.id) {
       case 'weather':
-        return (<Weather navigator={navigator}
-          toggleDrawer={this.props.toggleDrawer}/>);
+        return (this._weatherView());
       case 'detail':
         return (<WeatherDetail favorite={route.favorite} header={route.header} navigator={navigator}/>);
       default:
