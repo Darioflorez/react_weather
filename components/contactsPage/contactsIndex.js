@@ -30,11 +30,10 @@ export default class ContactsIndex extends React.Component {
       if(err && err.type === 'permissionDenied'){
         console.log("Error trying to get contacts", err)
       } else {
-        console.log(contacts)
+        //console.log(contacts)
         this.setState({
           contacts: this.state.contacts.cloneWithRows(contacts)
         })
-        console.log(this.state.contacts)
       }
     })
   }

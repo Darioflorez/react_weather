@@ -10,7 +10,8 @@ export const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#C7C7CC',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    flex: 0.2,
   },
   btn: {
     flexDirection: 'row',

@@ -24,7 +24,7 @@ export default class ContactNavigator extends React.Component {
       case 'contacts':
         return <ContactsIndex navigator={navigator}/>
       case 'contactDetail':
-        return (<ContactDetail navigator={navigator}/>);
+        return (<ContactDetail navigator={navigator} data={route.data}/>);
       default:
         break;
 
