@@ -31,7 +31,7 @@ export default class Home extends React.Component {
     //console.log(this.props)
     return (
       <TabBarIOS
-        tintColor="#34AADC"
+        tintColor="black"
         barTintColor="#F7F7F7"
       >
         <Icon.TabBarItem

@@ -61,7 +61,7 @@ export default class SearchBar extends Component {
           onSubmitEditing={(text) => {}}
           />
           <TouchableOpacity onPress={this.props.showProfile}>
-            <Icon name="ios-person" size={30} color="#007AFF"/>
+            <Icon name="ios-person" size={30} color="#34AADC"/>
           </TouchableOpacity>
       </View>
     );
