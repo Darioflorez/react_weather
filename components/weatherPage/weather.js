@@ -63,8 +63,8 @@ export default class Weather extends Component {
               resolve(position.coords);
             },
             /*Error if you use this variant of the function on Android*/
-            /*(error) => alert(error),
-            {enableHighAccuracy: true, maximumAge:30000, timeout:27000}*/
+            (error) => alert(error),
+            //{enableHighAccuracy: true, maximumAge:30000, timeout:27000}*/
           );
         } else {
           /* geolocation IS NOT available */
