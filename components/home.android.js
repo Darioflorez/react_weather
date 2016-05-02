@@ -16,6 +16,7 @@ import {styles} from '../styles/toolbar';
 import MenuItem from './menu/menuItem';
 import WeatherNavigator from './weatherNavigator';
 import Contact from './contacts';
+import CameraPage from './camera';
 
 const MENU = "android-menu";
 const BACK = "android-arrow-back";
@@ -111,7 +112,7 @@ export default class Home extends Component {
   _renderContent(){
     switch (this.state.view) {
       case 'camera':
-          return (<Camera/>);
+          return (<CameraPage/>);
       case 'contacts':
           return (<Contact/>);
       case 'weather':
@@ -132,7 +133,6 @@ export default class Home extends Component {
         selected={this.state.view === 'weather'}
         selectedIcon="android-cloud-circle"
         icon="android-cloud-outline"/>
-      <Separator/>
 
       <MenuItem
         onPress={this._cameraSelected}
@@ -140,13 +140,11 @@ export default class Home extends Component {
         selected={this.state.view === 'camera'}
         selectedIcon="android-cloud-circle"
         icon="android-camera"/>
-      <Separator/>
 
     <MenuItem
       onPress={this._contactsSelected}
       title="Contacts"
       icon="android-contacts"/>
-    <Separator/>
 
       </ScrollView>
   );
@@ -173,41 +171,3 @@ export default class Home extends Component {
   }
 }
 
-/*class Contacts extends React.Component{
-  render(){
-    return (
-      <View style={{flex:1, alignItems:'center', justifyContent: 'center',
-    backgroundColor: 'slateblue'}}>
-        <Text>
-          Contacts
-        </Text>
-      </View>
-    );
-  }
-}*/
-
-class Camera extends React.Component{
-  render(){
-    return (
-      <View style={{flex:1, alignItems:'center', justifyContent: 'center',
-    backgroundColor: 'wheat'}}>
-        <Text>
-          Camera
-        </Text>
-      </View>
-    );
-  }
-}
-
-class Separator extends React.Component{
-  render(){
-    return (
-      <View style={
-            {height: 1,
-            backgroundColor: '#C7C7CC',
-            flex: 1,
-            marginLeft: 15}
-          } />
-    );
-  }
-};

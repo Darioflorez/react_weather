@@ -34,6 +34,7 @@
 		E680F3986DA84014AD487E54 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6BB80394D0FD451D967FF983 /* FontAwesome.ttf */; };
 		EDB1B3D0D9B34C8AAB4482B2 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98721913EF2A40D19C3ED18E /* Octicons.ttf */; };
 		90C625D72C34483F993FAA67 /* libRCTContacts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9760A3B089944F5ABDB70BAA /* libRCTContacts.a */; };
+		119CC9FDB4C840D389C2F88F /* libRCTCamera.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F9D85DCCB548CF92BF431B /* libRCTCamera.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +185,8 @@
 		E10770D8957F4162AEC9E855 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		AE724F3272754B13A847F86B /* RCTContacts.xcodeproj */ = {isa = PBXFileReference; name = "RCTContacts.xcodeproj"; path = "../node_modules/react-native-contacts/ios/RCTContacts.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		9760A3B089944F5ABDB70BAA /* libRCTContacts.a */ = {isa = PBXFileReference; name = "libRCTContacts.a"; path = "libRCTContacts.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		FE02F1B0DB384CEFBBE1C687 /* RCTCamera.xcodeproj */ = {isa = PBXFileReference; name = "RCTCamera.xcodeproj"; path = "../node_modules/react-native-camera/ios/RCTCamera.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		A3F9D85DCCB548CF92BF431B /* libRCTCamera.a */ = {isa = PBXFileReference; name = "libRCTCamera.a"; path = "libRCTCamera.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +216,7 @@
 				7C4BDF3ADEDC47058FF6BBB5 /* libRNChart.a in Frameworks */,
 				97603323821D46D5A76ABC38 /* libBVLinearGradient.a in Frameworks */,
 				90C625D72C34483F993FAA67 /* libRCTContacts.a in Frameworks */,
+				119CC9FDB4C840D389C2F88F /* libRCTCamera.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,6 +376,7 @@
 				BB1D8159F0A14D3AA445EFE3 /* RNChart.xcodeproj */,
 				355CAB5D2B9C41C2BA340D97 /* BVLinearGradient.xcodeproj */,
 				AE724F3272754B13A847F86B /* RCTContacts.xcodeproj */,
+				FE02F1B0DB384CEFBBE1C687 /* RCTCamera.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -763,6 +768,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/react_weather.app/react_weather";
@@ -783,6 +789,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -810,6 +817,7 @@
 					"$(SRCROOT)/../node_modules/react-native-chart",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
+					"$(SRCROOT)\..\node_modules\react-native-camera\ios",
 				);
 				INFOPLIST_FILE = react_weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -834,6 +842,7 @@
 					"$(SRCROOT)/../node_modules/react-native-chart",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
+					"$(SRCROOT)\..\node_modules\react-native-camera\ios",
 				);
 				INFOPLIST_FILE = react_weather/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -886,6 +895,7 @@
 					"$(SRCROOT)/../node_modules/react-native-chart",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
+					"$(SRCROOT)\..\node_modules\react-native-camera\ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -931,6 +941,7 @@
 					"$(SRCROOT)/../node_modules/react-native-chart",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 					"$(SRCROOT)/../node_modules/react-native-contacts/ios/RCTContacts",
+					"$(SRCROOT)\..\node_modules\react-native-camera\ios",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
