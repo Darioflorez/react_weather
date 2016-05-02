@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
       paddingLeft: 10,
     },
     list: {
+      backgroundColor: 'white',
     },
     item: {
       alignItems: 'center',

@@ -109,21 +109,23 @@ export default class WeatherDetail extends React.Component {
                   />;
     }
     return (
-      <View style={styles.container}>
+      <View style={{flex:1}}>
         {barAndroid}
-        <View style={styles.info}>
-          <Detail rawData={this.state.rawData} route={this.state.route} region={this.state.region}/>
-          <TouchableOpacity style={styles.switchMode} onPress={this._changeDetail}>
-            <Icon style={styles.backBtn} name={switchIcon} size={25}/>
-          </TouchableOpacity>
+        <View style={styles.container}>
+          <View style={styles.info}>
+            <Detail rawData={this.state.rawData} route={this.state.route} region={this.state.region}/>
+            <TouchableOpacity style={styles.switchMode} onPress={this._changeDetail}>
+              <Icon style={styles.backBtn} name={switchIcon} size={25}/>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.list}>
+            <ListView
+              dataSource={this.state.dataSource}
+              renderRow={this._renderRow}
+            />
+          </View>
+          {barIOS}
         </View>
-        <View style={styles.list}>
-          <ListView
-            dataSource={this.state.dataSource}
-            renderRow={this._renderRow}
-          />
-        </View>
-        {barIOS}
       </View>
     );
   }

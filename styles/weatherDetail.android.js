@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
   },
   switchMode:{
     position: 'absolute',
-    top: 220,
+    top: 180,
     left: width-45,
     backgroundColor: 'transparent',
   },
@@ -38,5 +38,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
     backgroundColor: 'white',
+  },
+  rowView: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#C7C7CC',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 })

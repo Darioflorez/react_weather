@@ -19,14 +19,9 @@ import WeatherNavigator from './weatherNavigator';
 const MENU = "android-menu";
 const BACK = "android-arrow-back";
 
-const toolbarActions = [
-  { title: 'settings', iconName: 'android-settings', show: 'ifRoom' },
-  { title: 'search', iconName: 'android-search', show: 'ifRoom' },
-  { title: 'camera', iconName: 'android-camera', show: 'ifRoom' },
-  { title: 'contacts', iconName: 'android-contacts', show: 'ifRoom' },
-  { title: 'call', iconName: 'android-call', show: 'ifRoom' },
-  { title: 'mail', iconName: 'android-mail', show: 'ifRoom' },
-];
+// "android-cloud-circle"
+// "android-camera"
+// "android-contacts"
 
 export default class PlayGround extends Component {
 
@@ -133,12 +128,16 @@ export default class PlayGround extends Component {
       <MenuItem
         onPress={this._weatherSelected}
         title="Weather"
-        icon="android-cloud-circle"/>
+        selected={this.state.view === 'weather'}
+        selectedIcon="android-cloud-circle"
+        icon="android-cloud-outline"/>
       <Separator/>
 
       <MenuItem
         onPress={this._cameraSelected}
         title="Camera"
+        selected={this.state.view === 'camera'}
+        selectedIcon="android-cloud-circle"
         icon="android-camera"/>
       <Separator/>
 
@@ -204,22 +203,10 @@ class Separator extends React.Component{
     return (
       <View style={
             {height: 1,
-            backgroundColor: '#E4E4E4',
+            backgroundColor: '#C7C7CC',
             flex: 1,
             marginLeft: 15}
           } />
     );
   }
 };
-
-/*<Icon.ToolbarAndroid
-  title={"Drawer"}
-  titleColor={"white"}
-  navIconName={this.state.navIconName}
-  onIconClicked={this._onIconClicked}
-  style={styles.toolbar}
-  elevation={4}
-  actions={toolbarActions}
-  onActionSelected={this._onActionSelected}
-  overflowIconName="android-more-vertical"/>
-*/

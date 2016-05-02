@@ -11,15 +11,22 @@ import React, {
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
+// "#38aecc"
 export default class MenuItem extends Component {
-
+  constructor(props){
+    super(props);
+  }
 
   render() {
+
+    var icon = this.props.selected ? this.props.selectedIcon : this.props.icon;
+    var selectedTitleStyle = this.props.selected && styles.selectedTitle;
+
     return (
       <TouchableOpacity onPress={this.props.onPress}>
         <View style={styles.container}>
-          <Icon name={this.props.icon} size={29} color="black" style={styles.icon}/>
-        <Text style={styles.title} >
+          <Icon name={icon} size={29} color="#38aecc" style={styles.icon}/>
+        <Text style={[styles.title, selectedTitleStyle]} >
             {this.props.title}
           </Text>
         </View>
@@ -41,19 +48,10 @@ var styles = StyleSheet.create({
   title: {
     flex: 1,
     fontSize: 17,
-    color: "black",
+    color: "grey",
   },
   selectedTitle: {
-    color: "black",
+    color: "#38aecc",
   },
-  badge: {
-    backgroundColor: '#DC3883',
-    paddingHorizontal: 10,
-    paddingVertical: 2,
-    borderRadius: 10,
-  },
-  badgeText: {
-    fontSize: 12,
-    color: 'white',
-  },
+
 });
