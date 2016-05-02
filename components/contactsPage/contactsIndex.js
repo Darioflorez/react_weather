@@ -12,46 +12,47 @@ import React, {
 // you can link this with:
 // rnpm link 'react-native-contacts'
 import Contacts from 'react-native-contacts';
+import ContactRow from './contactRow';
+import ContactsBar from '../toolbar/contactsBar';
 
-import { styles } from '../styles/loginForm'
+import { styles } from '../../styles/contacts'
 
-var Icon = require('react-native-vector-icons/FontAwesome')
-
-export default class Contact extends React.Component {
+export default class ContactsIndex extends React.Component {
   constructor(){
     super();
     this.state = {
       contacts: new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     }
+    this._renderRow = this._renderRow.bind(this);
   }
   componentDidMount(){
     Contacts.getAll((err, contacts) => {
       if(err && err.type === 'permissionDenied'){
         console.log("Error trying to get contacts", err)
       } else {
-        console.log(contacts)
+        //console.log(contacts)
         this.setState({
           contacts: this.state.contacts.cloneWithRows(contacts)
         })
-        console.log(this.state.contacts)
       }
     })
   }
 
   _renderRow(rowData, rowSeg, rowId){
     return(
-      <View>
-       <Text>{rowData.givenName}</Text>
-      </View>
+      <ContactRow rowData={rowData} rowId={rowId} navigator={this.props.navigator}/>
     );
   }
 
   render() {
     return (
-      <ListView
-        dataSource={this.state.contacts}
-        renderRow={this._renderRow}
-      />
+      <View style={{flex:1}}> 
+        <ContactsBar />
+        <ListView
+          dataSource={this.state.contacts}
+          renderRow={this._renderRow}
+        />
+      </View>
     );
   }
 }
