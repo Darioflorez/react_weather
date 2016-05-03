@@ -1,5 +1,6 @@
 
 import { StyleSheet } from 'react-native'
+import {colors} from './colors';
 
 export const styles = StyleSheet.create({
   searchBar: {
@@ -9,7 +10,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 10,
     backgroundColor: '#F7F7F7',
     borderBottomWidth: 1,
-    borderBottomColor: '#C7C7CC',
+    borderBottomColor: colors.rowSeparator,
     flexDirection: 'row',
     justifyContent: 'space-between'
   },

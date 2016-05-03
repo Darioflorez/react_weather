@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native'
 
 export const styles = StyleSheet.create({
+  container:{
+    flex:1,
+  },
   topBar: {
     paddingTop:25,
     paddingLeft: 20,

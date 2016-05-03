@@ -1,8 +1,9 @@
 import {
   StyleSheet,
   Dimensions,
-   } from 'react-native'
+} from 'react-native';
 
+import {colors} from './colors';
 const {height, width} = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
@@ -14,11 +15,11 @@ export const styles = StyleSheet.create({
   },
   info: {
     flex: 0.4,
-    backgroundColor: 'white',
+    backgroundColor:colors.appBackground,
   },
   list: {
     flex: 0.6,
-    backgroundColor: 'white',
+    backgroundColor:colors.appBackground,
   },
   switchMode:{
     position: 'absolute',
@@ -37,11 +38,11 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-end',
-    backgroundColor: 'white',
+    backgroundColor:colors.appBackground,
   },
   rowView: {
     borderBottomWidth: 1,
-    borderBottomColor: '#C7C7CC',
+    borderBottomColor: colors.rowSeparator,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },

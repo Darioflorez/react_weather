@@ -34,6 +34,7 @@ export default class ContactDetail extends React.Component {
     );
   }
 
+  // we could abstract to an Item class the logic for choosing the items to use
   _renderEmails(data, index){
     console.log(data);
     return(
@@ -58,7 +59,7 @@ export default class ContactDetail extends React.Component {
     const name = firstName + " " + lastName;
 
     return (
-      <View >
+      <View style={styles.container}>
         <ContactDetailBar navigator={this.props.navigator}/>
         <Text style={styles.header}> {name} </Text>
         <Text style={styles.infoLabel}>Phones</Text>

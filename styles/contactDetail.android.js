@@ -1,6 +1,11 @@
 import { StyleSheet } from 'react-native'
+import {colors} from './colors';
 
 export const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor:colors.appBackground,
+  },
   header: {
     fontWeight: 'bold',
     fontFamily: 'Helvetica Neue',
@@ -14,7 +19,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderBottomWidth: 1,
-    borderBottomColor: '#8E8E93',
+    borderBottomColor: colors.rowSeparator,
   },
   infoLabel: {
     marginLeft: 15,

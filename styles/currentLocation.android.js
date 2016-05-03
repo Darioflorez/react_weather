@@ -1,5 +1,6 @@
 
 import { StyleSheet } from 'react-native'
+import {colors} from './colors';
 
 export const styles = StyleSheet.create({
     container: {
@@ -30,13 +31,13 @@ export const styles = StyleSheet.create({
       paddingLeft: 10,
     },
     list: {
-      backgroundColor: 'white',
+      backgroundColor:colors.appBackground,
     },
     item: {
       alignItems: 'center',
       justifyContent: 'center',
       borderBottomWidth: 1,
-      borderBottomColor: '#C7C7CC',
+      borderBottomColor: colors.rowSeparator,
       height: 56,
     },
     favoritesText: {

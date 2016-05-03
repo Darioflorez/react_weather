@@ -18,11 +18,12 @@ export default class ContactRow extends React.Component {
     super();
     this._pressRow = this._pressRow.bind(this);
   }
-  
+
   _pressRow(rowID: number, rowData: string){
     this.props.navigator.push({id: 'contactDetail', data: rowData})
   }
 
+  // Ta bort arrow for android
   render() {
     const rowData = this.props.rowData;
     const rowID = this.props.rowId;

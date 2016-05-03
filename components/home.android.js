@@ -21,11 +21,6 @@ import CameraPage from './camera';
 
 const MENU = "android-menu";
 const BACK = "android-arrow-back";
-var _dimensions;
-
-// "android-cloud-circle"
-// "android-camera"
-// "android-contacts"
 
 export default class Home extends Component {
 
@@ -149,8 +144,8 @@ export default class Home extends Component {
       onPress={this._contactsSelected}
       title="Contacts"
       selected={this.state.view === 'contacts'}
-      selectedIcon="android-contacts"
-      icon="android-contacts"/>
+      selectedIcon="android-person"
+      icon="android-person"/>
 
       </ScrollView>
   );
