@@ -11,6 +11,7 @@ import React, {
 import MapView from 'react-native-maps';
 import RNChart from 'react-native-chart';
 
+// It could be good to declare the props using in this clas for better understanding of the component
 export default class WeatherDetail extends React.Component {
   constructor(){
     super()
@@ -28,12 +29,16 @@ export default class WeatherDetail extends React.Component {
     let output;
     if(this.props.route === 'map'){
       if(this.props.region){
-        output = <MapView 
+        output = <MapView
         style={{flex:1}}
-        initialRegion={ this.props.region }/>;
+        initialRegion={ this.props.region }>
+        <MapView.Marker
+          coordinate={this.props.region}
+          title={this.props.name}/>
+      </MapView>;
       }
       else{
-        <Text>Loading...</Text> 
+        <Text>Loading...</Text>
       }
     }
     else{

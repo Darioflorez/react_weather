@@ -115,7 +115,8 @@ export default class WeatherDetail extends React.Component {
         {barAndroid}
         <View style={styles.container}>
           <View style={styles.info}>
-            <Detail rawData={this.state.rawData} route={this.state.route} region={this.state.region}/>
+            <Detail rawData={this.state.rawData} route={this.state.route}     region={this.state.region}
+            name={this.props.header.name}/>
             <TouchableOpacity style={styles.switchMode} onPress={this._changeDetail}>
               <Icon style={styles.backBtn} name={switchIcon} size={25}/>
             </TouchableOpacity>
