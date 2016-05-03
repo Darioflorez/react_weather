@@ -44,10 +44,11 @@ export default class ContactsIndex extends React.Component {
     );
   }
 
+  // In android we have to pass a function for controlling the menu
   render() {
     return (
-      <View style={{flex:1}}> 
-        <ContactsBar />
+      <View style={{flex:1}}>
+        <ContactsBar toggleDrawer={this.props.toggleDrawer}/>
         <ListView
           dataSource={this.state.contacts}
           renderRow={this._renderRow}

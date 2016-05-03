@@ -8,18 +8,20 @@ import React, {
   TextInput,
   DrawerLayoutAndroid,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import {styles} from '../styles/toolbar';
 import MenuItem from './menu/menuItem';
 import WeatherNavigator from './weatherNavigator';
-import Contact from './contacts';
+import ContactNavigator from './contactNavigator';
 import CameraPage from './camera';
 
 const MENU = "android-menu";
 const BACK = "android-arrow-back";
+var _dimensions;
 
 // "android-cloud-circle"
 // "android-camera"
@@ -112,9 +114,9 @@ export default class Home extends Component {
   _renderContent(){
     switch (this.state.view) {
       case 'camera':
-          return (<CameraPage/>);
+          return (<CameraPage />);
       case 'contacts':
-          return (<Contact/>);
+          return (<ContactNavigator toggleDrawer={this._toggleDrawer}/>);
       case 'weather':
           return (<WeatherNavigator toggleDrawer={this._toggleDrawer}/>);
       default:
@@ -124,26 +126,30 @@ export default class Home extends Component {
   }
 
   render() {
+    const {height, width} = Dimensions.get('window');
     var navigationView = (
-      <ScrollView style={{flex: 1, backgroundColor: 'white',}}>
 
+      <ScrollView style={{flex: 1, backgroundColor: 'white',}}>
+      <View style={{height:height/3, backgroundColor:'black'}}></View>
       <MenuItem
         onPress={this._weatherSelected}
         title="Weather"
         selected={this.state.view === 'weather'}
-        selectedIcon="android-cloud-circle"
-        icon="android-cloud-outline"/>
+        selectedIcon="android-cloud"
+        icon="android-cloud"/>
 
       <MenuItem
         onPress={this._cameraSelected}
         title="Camera"
         selected={this.state.view === 'camera'}
-        selectedIcon="android-cloud-circle"
+        selectedIcon="android-camera"
         icon="android-camera"/>
 
     <MenuItem
       onPress={this._contactsSelected}
       title="Contacts"
+      selected={this.state.view === 'contacts'}
+      selectedIcon="android-contacts"
       icon="android-contacts"/>
 
       </ScrollView>
@@ -170,4 +176,3 @@ export default class Home extends Component {
     );
   }
 }
-

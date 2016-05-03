@@ -22,7 +22,11 @@ export default class ContactNavigator extends React.Component {
   _renderScene(route, navigator){
     switch (route.id) {
       case 'contacts':
+      if(Platform.OS === 'ios'){
         return <ContactsIndex navigator={navigator}/>
+      } else {
+        return <ContactsIndex navigator={navigator} toggleDrawer={this.props.toggleDrawer}/>
+      }
       case 'contactDetail':
         return (<ContactDetail navigator={navigator} data={route.data}/>);
       default:

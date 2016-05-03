@@ -10,16 +10,15 @@ import React, {
 } from 'react-native';
 
 import ContactDetailBar from '../toolbar/contactDetailBar';
-
-var Icon = require('react-native-vector-icons/Ionicons')
-
+import Icon from 'react-native-vector-icons/Ionicons';
 import { styles } from '../../styles/contactDetail';
+import {AndroidBackButton} from '../../js/BackAndroid';
 
 export default class ContactDetail extends React.Component {
   constructor(){
     super();
   }
-  
+
   _renderNumbers(data, index){
     return(
       <View key={index} style={styles.infoSegment}>
@@ -34,7 +33,7 @@ export default class ContactDetail extends React.Component {
       </View>
     );
   }
-  
+
   _renderEmails(data, index){
     console.log(data);
     return(
@@ -49,14 +48,18 @@ export default class ContactDetail extends React.Component {
       </View>
     );
   }
-  
+
   render() {
+    AndroidBackButton(this.props.navigator);
     const contact = this.props.data;
     console.log(this.props.data)
-    const name = contact.givenName + " " + contact.familyName;
+    const firstName = contact.givenName || "";
+    const lastName = contact.familyName || "";
+    const name = firstName + " " + lastName;
+
     return (
       <View >
-        <ContactDetailBar navigator={this.props.navigator} />
+        <ContactDetailBar navigator={this.props.navigator}/>
         <Text style={styles.header}> {name} </Text>
         <Text style={styles.infoLabel}>Phones</Text>
         {contact.phoneNumbers.map((index,data) => this._renderNumbers(index,data) )}

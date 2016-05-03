@@ -9,7 +9,6 @@ import React, {
   ListView,
   StatusBar,
   Platform,
-  BackAndroid,
 } from 'react-native';
 
 import Detail from './detail';
@@ -18,16 +17,7 @@ import { styles } from '../../styles/weatherDetail';
 import { addToFavorites, removeFromFavorites } from '../../js/storage';
 import { fetchWeatherList } from '../../js/fetchData';
 import Icon from 'react-native-vector-icons/Ionicons';
-
-var _navigator;
-
-BackAndroid.addEventListener('hardwareBackPress', () => {
-  if (_navigator.getCurrentRoutes().length === 1  ) {
-     return false;
-  }
-  _navigator.pop();
-  return true;
-});
+import {AndroidBackButton} from '../../js/BackAndroid'
 
 export default class WeatherDetail extends React.Component {
   constructor(props){
@@ -90,7 +80,7 @@ export default class WeatherDetail extends React.Component {
     );
   }
   _onBack(){
-    this.props.navigator.resetTo({id: 'weather'})
+    this.props.navigator.pop();
   }
   _toggleFavorite(){
     this.setState({favorite: !this.state.favorite})
@@ -99,8 +89,8 @@ export default class WeatherDetail extends React.Component {
     this.state.favorite ? addToFavorites(value) : removeFromFavorites(value)
   }
   render() {
-    _navigator = this.props.navigator;
-    
+    AndroidBackButton(this.props.navigator);
+
     let switchIcon;
     this.state.route === 'map' ? switchIcon = "ios-pulse-strong" : switchIcon = "ios-navigate";
 
