@@ -26,6 +26,7 @@ export default class AppNavigator extends React.Component {
   constructor(props){
     super(props);
     this._renderScene = this._renderScene.bind(this);
+    this.navigateTo = this.navigateTo.bind(this);
   }
 
   _renderScene(route, navigator){
@@ -34,7 +35,8 @@ export default class AppNavigator extends React.Component {
       if(Platform.OS === 'ios'){
         return <ContactsIndex navigator={navigator}/>
       } else {
-        return <ContactsIndex navigator={navigator} toggleDrawer={this.props.toggleDrawer}/>
+        return <ContactsIndex navigator={navigator}
+           toggleDrawer={this.props.toggleDrawer}/>
       }
       case 'contactDetail':
         return (<ContactDetail navigator={navigator} data={route.data}/>);
@@ -61,15 +63,31 @@ export default class AppNavigator extends React.Component {
     }
   }
 
+  navigateTo(route){
+    switch (route) {
+      case 'weather':
+          navigator.resetTo({id: route});
+        break;
+      case 'contacts':
+          navigator.resetTo({id: route});
+        break;
+        case 'camera':
+            navigator.push({id: route});
+          break;
+      default:
+        break;
+    }
+  }
+
   render() {
     return (
       <Navigator
+        style={{ flex:1 }}
         ref={(nav) => { navigator = nav; }}
         initialRoute={{id: 'weather'}}
         renderScene={this._renderScene}
         configureScene={ this._configureScene}
       />
-
     );
   }
 }

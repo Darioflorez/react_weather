@@ -54,6 +54,7 @@ export default class CurrentLocationBox extends Component {
       header: {name: this.props.location.name, country: this.props.location.country, searchString: searchString}})
   }
 
+  // improvements push({id: 'details', passPropps:{favorite: true, etc..}})
   _pressRow(rowID: number, rowData: string){
     //console.log(rowID);
     let list = rowData.split(',');
