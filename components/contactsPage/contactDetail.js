@@ -51,7 +51,6 @@ export default class ContactDetail extends React.Component {
   }
 
   render() {
-    AndroidBackButton(this.props.navigator);
     const contact = this.props.data;
     console.log(this.props.data)
     const firstName = contact.givenName || "";

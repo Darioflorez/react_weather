@@ -2,25 +2,35 @@
 
 import React, {
   Component,
-  StyleSheet,
   View,
-  Text,
-  TextInput,
   DrawerLayoutAndroid,
   ScrollView,
   TouchableOpacity,
   Dimensions,
+  Navigator,
+  Platform,
+  BackAndroid,
 } from 'react-native';
+
+// Screens
+import ContactsIndex from './contactsPage/contactsIndex';
+import ContactDetail from './contactsPage/contactDetail';
+import Weather from './weatherPage/weather';
+import WeatherDetail from './weatherPage/weatherDetail';
+import CameraPage from './camera';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import {styles} from '../styles/toolbar';
 import MenuItem from './menu/menuItem';
-import WeatherNavigator from './weatherNavigator';
-import ContactNavigator from './contactNavigator';
-import CameraPage from './camera';
 
-const MENU = "android-menu";
-const BACK = "android-arrow-back";
+var navigator;
+BackAndroid.addEventListener('hardwareBackPress', () => {
+  if (navigator.getCurrentRoutes().length === 1  ) {
+     return false;
+  }
+  navigator.pop();
+  return true;
+});
 
 export default class Home extends Component {
 
@@ -34,20 +44,13 @@ export default class Home extends Component {
     this._weatherSelected = this._weatherSelected.bind(this);
     this._cameraSelected = this._cameraSelected.bind(this);
     this._contactsSelected = this._contactsSelected.bind(this);
-    this._renderContent = this._renderContent.bind(this);
+    this._renderScene = this._renderScene.bind(this);
     this.drawerOpen = false;
     // drawerLockMode enum('unlocked', 'locked-closed', 'locked-open')
     this.state = {
-      navIconName: MENU,
-      view: 'weather',
       drawerLockMode: 'unlocked'
     }
   };
-
-  componentDidMount(){
-
-  }
-
 
   _onIconClicked(){
     console.log("Icon clicked");
@@ -56,12 +59,10 @@ export default class Home extends Component {
 
   _closeDrawer(){
     this.drawerOpen = false;
-    this.setState({navIconName: MENU})
   }
 
   _openDrawer(){
     this.drawerOpen = true;
-    this.setState({navIconName: BACK})
   }
 
   _toggleDrawer(){
@@ -88,36 +89,22 @@ export default class Home extends Component {
   _weatherSelected(){
     console.log("Home Selected!");
     this._toggleDrawer();
-    this.setState({view: 'weather'})
+    navigator.resetTo({id: 'weather'});
     // change component
   }
 
   _cameraSelected(){
-    this.setState({view: 'camera'});
+    console.log("Contacts Selected!");
     this._toggleDrawer();
-    console.log("Camera Selected!");
+    navigator.push({id: 'camera'});
     // change component
   }
 
   _contactsSelected(){
     console.log("Contacts Selected!");
     this._toggleDrawer();
-    this.setState({view: 'contacts'});
+    navigator.resetTo({id: 'contacts'});
     // change component
-  }
-
-  _renderContent(){
-    switch (this.state.view) {
-      case 'camera':
-          return (<CameraPage />);
-      case 'contacts':
-          return (<ContactNavigator toggleDrawer={this._toggleDrawer}/>);
-      case 'weather':
-          return (<WeatherNavigator toggleDrawer={this._toggleDrawer}/>);
-      default:
-        break;
-
-    }
   }
 
   render() {
@@ -150,7 +137,7 @@ export default class Home extends Component {
       </ScrollView>
   );
 
-// Show views with drawer and wihout drawer
+// Show views with drawer and wihout drawer {this._renderContent()}
     return(
       <View style={{flex:1}}>
 
@@ -163,11 +150,52 @@ export default class Home extends Component {
           onDrawerClose= {this._closeDrawer}
           onDrawerOpen={this._openDrawer}>
 
-          {this._renderContent()}
+          <Navigator
+            ref={(nav) => { navigator = nav; }}
+            initialRoute={{id: 'weather'}}
+            renderScene={this._renderScene}
+            configureScene={ this._configureScene}
+          />
 
         </DrawerLayoutAndroid>
       </View>
 
     );
   }
+
+  // this function can be implemented in a separate class
+  // for better cross-platform usability
+  _renderScene(route, navigator){
+    switch (route.id) {
+      case 'weather':
+      if(Platform.OS === 'ios'){
+        return <Weather navigator={navigator}/>
+      } else {
+        return <Weather navigator={navigator} toggleDrawer={this._toggleDrawer}/>
+      }
+      case 'detail':
+        return (<WeatherDetail favorite={route.favorite} header={route.header} navigator={navigator}/>);
+
+      case 'contacts':
+      if(Platform.OS === 'ios'){
+        return <ContactsIndex navigator={navigator}/>
+      } else {
+        return <ContactsIndex navigator={navigator} toggleDrawer={this._toggleDrawer}/>
+      }
+      case 'contactDetail':
+        return (<ContactDetail navigator={navigator} data={route.data}/>);
+      case 'camera':
+        return (<CameraPage navigator={navigator}/>);
+      default:
+        break;
+    }
+  }
+
+  _configureScene(route, routeStack){
+    return {
+      ...Navigator.SceneConfigs.HorizontalSwipeJump,
+      gestures: {}
+    }
+  }
+
 }

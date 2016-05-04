@@ -89,8 +89,6 @@ export default class WeatherDetail extends React.Component {
     this.state.favorite ? addToFavorites(value) : removeFromFavorites(value)
   }
   render() {
-    AndroidBackButton(this.props.navigator);
-
     let switchIcon;
     this.state.route === 'map' ? switchIcon = "ios-pulse-strong" : switchIcon = "ios-navigate";
 
