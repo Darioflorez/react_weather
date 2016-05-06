@@ -12,7 +12,6 @@ import React, {
 import ContactDetailBar from '../toolbar/contactDetailBar';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { styles } from '../../styles/contactDetail';
-import {AndroidBackButton} from '../../js/BackAndroid';
 
 export default class ContactDetail extends React.Component {
   constructor(){
@@ -51,7 +50,6 @@ export default class ContactDetail extends React.Component {
   }
 
   render() {
-    AndroidBackButton(this.props.navigator);
     const contact = this.props.data;
     console.log(this.props.data)
     const firstName = contact.givenName || "";

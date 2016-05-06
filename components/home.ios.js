@@ -13,7 +13,7 @@ import React, {
 
 import WeatherNavigator from './weatherNavigator';
 import ContactNavigator from './contactNavigator';
-import Camera from './camera';
+import CameraPage from './camera';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import { styles } from '../styles/loginForm'
@@ -22,7 +22,7 @@ export default class Home extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      route: 'contacts'
+      route: 'weather'
     };
   }
 
@@ -33,7 +33,6 @@ export default class Home extends React.Component {
       <TabBarIOS
         tintColor="black"
         barTintColor="#F7F7F7"
-        style={{borderWidth: 1, borderColor: '#8E8E93'}}
       >
         <Icon.TabBarItem
           iconName="ios-partlysunny-outline"
@@ -51,11 +50,8 @@ export default class Home extends React.Component {
           selectedIconName="ios-camera"
           selected={route === 'camera'}
           onPress={() => {
-            this.setState({
-              route: 'camera',
-            });
+            this.props.navigator.replace({id: 'camera'})
           }}>
-          <Camera />
         </Icon.TabBarItem>
         <Icon.TabBarItem
           iconName="ios-people-outline"

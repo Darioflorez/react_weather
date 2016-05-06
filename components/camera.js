@@ -9,9 +9,11 @@ import React, {
   TouchableOpacity,
   CameraRoll,
   Image,
+  Platform
 } from 'react-native';
 
-import { styles } from '../styles/camera';
+import { styles, icons } from '../styles/camera';
+
 import Icon from 'react-native-vector-icons/Ionicons';
 
 // credits: https://github.com/lwansbrough/react-native-camera
@@ -25,6 +27,8 @@ export default class CameraPage extends Component {
       imageUri: null,
     }
     this._fetchImages = this._fetchImages.bind(this);
+    this._switchCamera = this._switchCamera.bind(this);
+    this._onExit = this._onExit.bind(this);
   }
 
   _takePicture() {
@@ -40,8 +44,17 @@ export default class CameraPage extends Component {
     this.state.type === 'back' ? this.setState({type: 'front'}) : this.setState({type: 'back'})
   }
 
+  _onExit(){
+    this.props.navigator.replace({id: 'home'});
+  }
+
   componentDidMount() {
     this._fetchImages();
+    console.log("DidMount");
+  }
+
+  componentWillUnmount(){
+    console.log("WillUMount");
   }
 
   _fetchImages(){
@@ -66,6 +79,13 @@ export default class CameraPage extends Component {
 
   render() {
     console.log(this.state.imageUri);
+    var ios_output;
+    Platform === 'ios' ? ios_output = (<TouchableOpacity
+      style={styles.exit}
+      onPress={this._onExit}>
+      <Icon name={"ios-close-outline"} size={30} color="white"/>
+    </TouchableOpacity>) : ios_output = null
+
     return (
       <View style={styles.container}>
         <Camera
@@ -83,15 +103,15 @@ export default class CameraPage extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.switch}
-            onPress={this._switchCamera.bind(this)}>
-            <Icon name={'arrow-swap'} size={20} color="#000"/>
+            onPress={this._switchCamera}>
+            <Icon name={icons.switch} size={30} color="white"/>
           </TouchableOpacity>
+          {ios_output}
           <TouchableOpacity onPress={this._takePicture.bind(this)}
             style={styles.actionButton}>
-              <Icon name={'camera'} size={50} color="#000" style={styles.icon}/>
+              <Icon name={icons.btn} size={60} color="white" style={styles.icon}/>
           </TouchableOpacity>
       </View>
-
     );
   }
 }
