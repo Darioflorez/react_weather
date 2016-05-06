@@ -116,7 +116,6 @@ export default class Home extends Component {
           return (<WeatherNavigator toggleDrawer={this._toggleDrawer}/>);
       default:
         break;
-
     }
   }
 
