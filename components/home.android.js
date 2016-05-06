@@ -93,8 +93,8 @@ export default class Home extends Component {
   }
 
   _cameraSelected(){
-    this.setState({view: 'camera'});
     this._toggleDrawer();
+    this.props.navigator.push({id: 'camera'});
     console.log("Camera Selected!");
     // change component
   }
@@ -108,8 +108,6 @@ export default class Home extends Component {
 
   _renderContent(){
     switch (this.state.view) {
-      case 'camera':
-          return (<CameraPage />);
       case 'contacts':
           return (<ContactNavigator toggleDrawer={this._toggleDrawer}/>);
       case 'weather':

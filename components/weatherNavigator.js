@@ -7,6 +7,7 @@ import React, {
   StyleSheet,
   Navigator,
   Platform,
+  BackAndroid,
 } from 'react-native';
 
 // Screens
@@ -17,6 +18,24 @@ export default class WeatherNavigator extends React.Component {
   constructor(props){
     super(props);
     this._renderScene = this._renderScene.bind(this);
+    this._handleBackButton = this._handleBackButton.bind(this);
+  }
+
+  componentDidMount() {
+    BackAndroid.addEventListener('hardwareBackPress', this._handleBackButton);
+  }
+
+  componentWillUnmount() {
+    BackAndroid.removeEventListener('hardwareBackPress', this._handleBackButton);
+  }
+
+  _handleBackButton(){
+    const {navigator} = this.refs;
+    if (navigator.getCurrentRoutes().length === 1  ) {
+       return false;
+    }
+    navigator.pop();
+    return true;
   }
 
   _renderScene(route, navigator){
@@ -37,7 +56,12 @@ export default class WeatherNavigator extends React.Component {
 
 
   _configureScene(route, routeStack){
-
+    if (Platform.OS === 'android') {
+      return {
+        ...Navigator.SceneConfigs.FloatFromBottomAndroid,
+        gestures: {}
+      }
+    }
     return {
       ...Navigator.SceneConfigs.HorizontalSwipeJump,
       gestures: {}
@@ -47,7 +71,7 @@ export default class WeatherNavigator extends React.Component {
   render() {
     return (
       <Navigator
-        ref='app'
+        ref='navigator'
         initialRoute={{id: 'weather'}}
         renderScene={this._renderScene}
         configureScene={ this._configureScene }
