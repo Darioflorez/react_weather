@@ -22,7 +22,7 @@ export default class LoginForm extends React.Component {
           <Image resizeMode={'contain'} style={styles.logo} source={require('../images/app_logo.png')} />
         </View>
         <View style={styles.inputView}>
-          <Icon.Button onPress={this.props.onLogin} name="facebook" backgroundColor="#3b5998">
+          <Icon.Button onPress={this.props.onLoginWithFacebookSDK} name="facebook" backgroundColor="#3b5998">
             <Text style={styles.btnLabel}>Login with Facebook</Text>
           </Icon.Button>
           <TouchableOpacity style={styles.btn} onPress={this.props.onLogin}>
@@ -33,4 +33,3 @@ export default class LoginForm extends React.Component {
     );
   }
 }
-
