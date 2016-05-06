@@ -1,4 +1,5 @@
 <resources>
 
     <string name="app_name">react_weather</string>
+    <string name="facebook_app_id">1535688486740986</string>
 </resources>
