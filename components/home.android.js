@@ -58,19 +58,19 @@ export default class Home extends Component {
 
   _weatherSelected(){
     this._toggleDrawer();
-    this.refs['NAVIGATOR'].navigateTo('weather');
+    this.refs.NAVIGATOR.navigateTo('weather');
     // change component
   }
 
   _cameraSelected(){
     this._toggleDrawer();
-    this.refs['NAVIGATOR'].navigateTo('camera');
+    this.refs.NAVIGATOR.navigateTo('camera');
     // change component
   }
 
   _contactsSelected(){
     this._toggleDrawer();
-    this.refs['NAVIGATOR'].navigateTo('contacts');
+    this.refs.NAVIGATOR.navigateTo('contacts');
     //change component
   }
 
