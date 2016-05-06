@@ -43,7 +43,7 @@ export default class Home extends React.Component {
               route: 'weather',
             });
           }}>
-          <WeatherNavigator onLogout={this.props.onLogout}/>
+          <WeatherNavigator AppNavigator={this.props.navigator} />
         </Icon.TabBarItem>
         <Icon.TabBarItem
           iconName="ios-camera-outline"

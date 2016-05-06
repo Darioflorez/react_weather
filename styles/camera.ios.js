@@ -9,6 +9,7 @@ var iconRadius = 70;
 var iconCenter = (width/2)-iconRadius/2;
 
 export const icons = { btn: "ios-circle-filled", switch: "camera" }
+export const colors = { icon: 'white'};
 
 export const styles = StyleSheet.create({
   container:{
@@ -33,8 +34,8 @@ export const styles = StyleSheet.create({
   },
   switch:{
     position: 'absolute',
-    top: 25,
-    right: 75,
+    bottom: 25,
+    right: 25,
   },
   exit:{
     position: 'absolute',
@@ -56,5 +57,8 @@ export const styles = StyleSheet.create({
   picture:{
     height: iconRadius-8,
     width: iconRadius-8,
+  },
+  icon: {
+    color: 'white',
   }
 })

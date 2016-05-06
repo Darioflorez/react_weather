@@ -78,15 +78,19 @@ export default class WeatherDetail extends React.Component {
       </View>
     );
   }
+  
+  // resetTo forces parent component to rerender favorites-list
   _onBack(){
-    this.props.navigator.pop();
+    this.props.navigator.resetTo({id: 'weather'})
   }
+  
   _toggleFavorite(){
     this.setState({favorite: !this.state.favorite})
     let value = this.props.header.searchString;
     console.log("VALUE", value);
     this.state.favorite ? addToFavorites(value) : removeFromFavorites(value)
   }
+  
   render() {
     let switchIcon;
     this.state.route === 'map' ? switchIcon = "ios-pulse-strong" : switchIcon = "ios-navigate";

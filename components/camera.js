@@ -12,7 +12,7 @@ import React, {
   Platform
 } from 'react-native';
 
-import { styles, icons } from '../styles/camera';
+import { styles, icons, colors } from '../styles/camera';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -83,7 +83,7 @@ export default class CameraPage extends Component {
     Platform === 'ios' ? ios_output = (<TouchableOpacity
       style={styles.exit}
       onPress={this._onExit}>
-      <Icon name={"ios-close-outline"} size={30} color="white"/>
+      <Icon name={"ios-close-empty"} size={40} color="white"/>
     </TouchableOpacity>) : ios_output = null
 
     return (
@@ -104,12 +104,12 @@ export default class CameraPage extends Component {
           <TouchableOpacity
             style={styles.switch}
             onPress={this._switchCamera}>
-            <Icon name={icons.switch} size={30} color="white"/>
+            <Icon name={icons.switch} size={40} style={styles.icon}/>
           </TouchableOpacity>
           {ios_output}
           <TouchableOpacity onPress={this._takePicture.bind(this)}
             style={styles.actionButton}>
-              <Icon name={icons.btn} size={60} color="white" style={styles.icon}/>
+              <Icon name={icons.btn} size={60} style={styles.icon}/>
           </TouchableOpacity>
       </View>
     );

@@ -11,6 +11,7 @@ import React, {
 } from 'react-native';
 
 const {height, width} = Dimensions.get('window');
+import { styles } from '../styles/profile';
 
 var Icon = require('react-native-vector-icons/Ionicons')
 
@@ -21,16 +22,14 @@ export default class Profile extends Component {
   render() {
     return (
       <View style={{flex:1,}}>
-        <View style={{flex:0.4, opacity: 0.5,backgroundColor:'black'}}/>
-        <View style={{flex:0.6,width:width, backgroundColor:'#34AADC',justifyContent: 'space-between', alignItems: 'center'}}>
-          <TouchableOpacity onPress={this.props.onClose}>
-            <Icon style={{paddingRight:10}}name="ios-arrow-down" size={60} color="white"/>
-          </TouchableOpacity>
-          <TouchableOpacity style={{flexDirection: 'row', marginBottom: 60,padding:10,borderWidth: 1,borderColor:'white',borderRadius:10}}onPress={this.props.onLogout()}>
-            <Icon style={{paddingRight:10}}name="ios-arrow-left" size={30} color="white"/>
-            <Text style={{color: 'white',padding: 2,fontSize: 20 }}> Logga ut </Text>
-          </TouchableOpacity>
-        </View>
+        <View style={{flex:1, opacity: 0.9,backgroundColor:'black'}}/>
+        <TouchableOpacity style={styles.exit} onPress={this.props.onClose}>
+          <Icon style={{paddingRight:10}} name="ios-close-empty" size={60} color="white"/>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btn} onPress={this.props.onLogout()}>
+          <Icon style={{paddingRight:10}}name="ios-arrow-left" size={30} color="white"/>
+          <Text style={{color: 'white',padding: 2,fontSize: 20 }}> Logga ut </Text>
+        </TouchableOpacity>
       </View>
     );
   }

@@ -42,7 +42,7 @@ export default class WeatherNavigator extends React.Component {
     switch (route.id) {
       case 'weather':
         if(Platform.OS === 'ios'){
-          return <Weather navigator={navigator}/>
+          return <Weather navigator={navigator} AppNavigator={this.props.AppNavigator}/>
         } else {
           return <Weather navigator={navigator} toggleDrawer={this.props.toggleDrawer}/>
         }

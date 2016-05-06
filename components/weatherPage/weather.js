@@ -117,7 +117,7 @@ export default class Weather extends Component {
   _onLogout(){
     console.log("logout!")
     this.setState({modalVisible: false});
-    this.props.navigator.replace({id: 'login'})
+    this.props.AppNavigator.replace({id: 'login'})
   }
   render() {
     let output;
