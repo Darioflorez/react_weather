@@ -50,11 +50,8 @@ export default class Home extends React.Component {
           selectedIconName="ios-camera"
           selected={route === 'camera'}
           onPress={() => {
-            this.setState({
-              route: 'camera',
-            });
+            this.props.navigator.replace({id: 'camera'})
           }}>
-          <CameraPage />
         </Icon.TabBarItem>
         <Icon.TabBarItem
           iconName="ios-people-outline"

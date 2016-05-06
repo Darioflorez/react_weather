@@ -26,6 +26,8 @@ export default class CameraPage extends Component {
       imageUri: null,
     }
     this._fetchImages = this._fetchImages.bind(this);
+    this._switchCamera = this._switchCamera.bind(this);
+    this._onExit = this._onExit.bind(this);
   }
 
   _takePicture() {
@@ -39,6 +41,10 @@ export default class CameraPage extends Component {
 
   _switchCamera(){
     this.state.type === 'back' ? this.setState({type: 'front'}) : this.setState({type: 'back'})
+  }
+  
+  _onExit(){
+    this.props.navigator.replace({id: 'home'});
   }
 
   componentDidMount() {
@@ -89,8 +95,13 @@ export default class CameraPage extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.switch}
-            onPress={this._switchCamera.bind(this)}>
+            onPress={this._switchCamera}>
             <Icon name={icons.switch} size={30} color="white"/>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.exit}
+            onPress={this._onExit}>
+            <Icon name={"ios-close-outline"} size={30} color="white"/>
           </TouchableOpacity>
           <TouchableOpacity onPress={this._takePicture.bind(this)}
             style={styles.actionButton}>

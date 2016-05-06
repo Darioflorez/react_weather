@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
   },
   actionButton: {
     position: 'absolute',
-    bottom: 60,
+    bottom: 25,
     padding: 5,
     left:iconCenter,
     height: iconRadius,
@@ -32,6 +32,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   switch:{
+    position: 'absolute',
+    top: 25,
+    right: 75,
+  },
+  exit:{
     position: 'absolute',
     top: 25,
     right: 25,

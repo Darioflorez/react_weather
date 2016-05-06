@@ -21,8 +21,9 @@ export default class App extends React.Component {
     if(route.id === 'home'){
       return (<Home navigator={navigator}/>);
     }
-    if(route.id === 'camera')
-      return (<CameraPage navigator={navigator});
+    if(route.id === 'camera'){
+      return (<CameraPage navigator={navigator} />);
+    }
   }
 
   _configureScene(route, routeStack){
