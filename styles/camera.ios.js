@@ -33,8 +33,8 @@ export const styles = StyleSheet.create({
   },
   switch:{
     position: 'absolute',
-    top: 25,
-    right: 75,
+    bottom: 25,
+    right: 25,
   },
   exit:{
     position: 'absolute',
