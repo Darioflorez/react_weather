@@ -38,3 +38,5 @@ npm-debug.log
 components/playGround.js
 
 *.keystore
+*gradle.properties
+*.apk
