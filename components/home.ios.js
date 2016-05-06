@@ -13,7 +13,7 @@ import React, {
 
 import WeatherNavigator from './weatherNavigator';
 import ContactNavigator from './contactNavigator';
-import Camera from './camera';
+import CameraPage from './camera';
 
 import Icon from 'react-native-vector-icons/Ionicons';
 import { styles } from '../styles/loginForm'
@@ -55,7 +55,7 @@ export default class Home extends React.Component {
               route: 'camera',
             });
           }}>
-          <Camera />
+          <CameraPage />
         </Icon.TabBarItem>
         <Icon.TabBarItem
           iconName="ios-people-outline"
