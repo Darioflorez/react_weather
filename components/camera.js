@@ -11,7 +11,8 @@ import React, {
   Image,
 } from 'react-native';
 
-import { styles } from '../styles/camera';
+import { styles, icons } from '../styles/camera';
+
 import Icon from 'react-native-vector-icons/Ionicons';
 
 // credits: https://github.com/lwansbrough/react-native-camera
@@ -42,6 +43,11 @@ export default class CameraPage extends Component {
 
   componentDidMount() {
     this._fetchImages();
+    console.log("DidMount");
+  }
+  
+  componentWillUnmount(){
+    console.log("WillUMount");
   }
 
   _fetchImages(){
@@ -84,11 +90,11 @@ export default class CameraPage extends Component {
           <TouchableOpacity
             style={styles.switch}
             onPress={this._switchCamera.bind(this)}>
-            <Icon name={'arrow-swap'} size={20} color="#000"/>
+            <Icon name={icons.switch} size={30} color="white"/>
           </TouchableOpacity>
           <TouchableOpacity onPress={this._takePicture.bind(this)}
             style={styles.actionButton}>
-              <Icon name={'camera'} size={50} color="#000" style={styles.icon}/>
+              <Icon name={icons.btn} size={60} color="white" style={styles.icon}/>
           </TouchableOpacity>
       </View>
 

@@ -8,6 +8,8 @@ const {height, width} = Dimensions.get('window');
 var iconRadius = 70;
 var iconCenter = (width/2)-iconRadius/2;
 
+export const icons = { btn: "ios-circle-filled", switch: "ios-reverse-camera-outline" }
+
 export const styles = StyleSheet.create({
   container:{
     flex:1,
@@ -20,45 +22,34 @@ export const styles = StyleSheet.create({
     width: width
   },
   actionButton: {
-        position: 'absolute',
-        bottom: 25,
-        padding: 5,
-        left:iconCenter,
-        height: iconRadius,
-        width: iconRadius,
-        borderRadius: iconRadius,
-        backgroundColor:'#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+    position: 'absolute',
+    bottom: 60,
+    padding: 5,
+    left:iconCenter,
+    height: iconRadius,
+    width: iconRadius,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   switch:{
     position: 'absolute',
     top: 25,
-    padding: 5,
-    right:15,
-    height: 30,
-    width: 30,
-    borderRadius: 30,
-    backgroundColor:'#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    right: 25,
   },
   pictureContainer: {
     position: 'absolute',
     top: 25,
-    padding: 5,
     left:15,
     height: iconRadius,
     width: iconRadius,
-    borderRadius: iconRadius,
-    borderWidth: 4,
-    borderColor: '#fff',
+    borderWidth: 1,
+    margin: 4,
+    borderColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
   },
   picture:{
-    height: iconRadius-4,
-    width: iconRadius-4,
-    borderRadius: iconRadius-4,
+    height: iconRadius-8,
+    width: iconRadius-8,
   }
 })

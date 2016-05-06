@@ -33,7 +33,6 @@ export default class Home extends React.Component {
       <TabBarIOS
         tintColor="black"
         barTintColor="#F7F7F7"
-        style={{borderWidth: 1, borderColor: '#8E8E93'}}
       >
         <Icon.TabBarItem
           iconName="ios-partlysunny-outline"
