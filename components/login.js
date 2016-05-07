@@ -26,20 +26,21 @@ export default class Login extends React.Component {
   }
 
   _onLoginWithFacebookSDK(){
-    LoginManager.logInWithReadPermissions(['public_profile']).then(
-      function(result) {
-        if (result.isCancelled) {
-          alert('Login cancelled');
-        } else {
-          alert('Login success with permissions: '
-            +result.grantedPermissions.toString());
-            this.props.navigator.replace({id: 'home'});
-        }
-      },
-      function(error) {
-        alert('Login fail with error: ' + error);
+    LoginManager.logInWithReadPermissions(['public_profile'])
+    .then((result) =>{
+      if (result.isCancelled) {
+        alert('Login cancelled');
+      } else {
+        alert('Login success with permissions: '
+          +result.grantedPermissions.toString());
+          console.log("RESULT: ", result);
+          this.props.navigator.replace({id: 'home'});
       }
-    );
+    })
+    .catch((error) => {
+      console.log('Login fail with error: ' + error);
+      alert('Login fail with error: ' + error);
+    });
   }
   render() {
     return (
