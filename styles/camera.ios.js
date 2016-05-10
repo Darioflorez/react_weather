@@ -25,7 +25,6 @@ export const styles = StyleSheet.create({
   actionButton: {
     position: 'absolute',
     bottom: 25,
-    padding: 5,
     left:iconCenter,
     height: iconRadius,
     width: iconRadius,

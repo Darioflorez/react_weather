@@ -109,7 +109,7 @@ export default class CameraPage extends Component {
           {ios_output}
           <TouchableOpacity onPress={this._takePicture.bind(this)}
             style={styles.actionButton}>
-              <Icon name={icons.btn} size={60} style={styles.icon}/>
+              <Icon name={icons.btn} size={80} color="white" style={styles.icon}/>
           </TouchableOpacity>
       </View>
     );

@@ -25,7 +25,6 @@ let getFavorites = function(){
 }
 
 let addToFavorites= function(value){
-  console.log(value);
   getFavorites()
   .then((data) => {
     let stringList;
@@ -40,7 +39,6 @@ let addToFavorites= function(value){
 let removeFromFavorites = function(value){
   getFavorites().then((data) => {
     let stringList = JSON.parse(data);
-    console.log(stringList);
     stringList.splice(stringList.indexOf(value), 1); // at position index remove 1 item
     AsyncStorage.setItem('favorites', JSON.stringify(stringList));
   })
