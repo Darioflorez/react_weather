@@ -80,7 +80,7 @@ export default class CameraPage extends Component {
   render() {
     console.log(this.state.imageUri);
     var ios_output;
-    Platform === 'ios' ? ios_output = (<TouchableOpacity
+    Platform.OS === 'ios' ? ios_output = (<TouchableOpacity
       style={styles.exit}
       onPress={this._onExit}>
       <Icon name={"ios-close-empty"} size={40} color="white"/>

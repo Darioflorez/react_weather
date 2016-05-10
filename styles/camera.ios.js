@@ -3,13 +3,12 @@ import {
   Dimensions,
 } from 'react-native';
 
-import {colors} from './colors';
+import { colors } from './colors';
 const {height, width} = Dimensions.get('window');
 var iconRadius = 70;
 var iconCenter = (width/2)-iconRadius/2;
 
-export const icons = { btn: "ios-circle-filled", switch: "camera" }
-export const colors = { icon: 'white'};
+export const icons = { btn: "ios-circle-filled", switch: "ios-reverse-camera-outline" }
 
 export const styles = StyleSheet.create({
   container:{

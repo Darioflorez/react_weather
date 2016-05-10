@@ -39,6 +39,7 @@ export default class CurrentLocationBox extends Component {
   componentDidMount() {
     getFavorites().catch( error => console.log("Error retrieving data:", error) )
     .done( data => {
+      console.log(data)
       if(data != null){
         this.setState({
           favouriteLocations: this.state.favouriteLocations.cloneWithRows(JSON.parse(data))

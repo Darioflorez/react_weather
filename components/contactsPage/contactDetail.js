@@ -12,7 +12,7 @@ import React, {
 import ContactDetailBar from '../toolbar/contactDetailBar';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { styles } from '../../styles/contactDetail';
-import {AndroidBackButton} from '../../js/BackAndroid';
+
 import Communications from 'react-native-communications';
 
 export default class ContactDetail extends React.Component {
