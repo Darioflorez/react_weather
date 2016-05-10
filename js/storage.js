@@ -44,7 +44,11 @@ let removeFromFavorites = function(value){
   })
 }
 
-export { setData, getAllData, getFavorites, addToFavorites, removeFromFavorites };
+let sum = function(a,b){
+  return a+b;
+}
+
+export { setData, getAllData, getFavorites, addToFavorites, removeFromFavorites, sum };
 
 /**
  * Usage
