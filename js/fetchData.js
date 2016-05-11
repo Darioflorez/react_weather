@@ -5,6 +5,8 @@ const KEY = "3afea7f9ad83cfd1c1e352f5977f7af7";
 const TYPE = "like";
 const UNITS = "metric";
 
+import 'whatwg-fetch';
+
 type Date = {
     day: string;
     dateStr: string;
