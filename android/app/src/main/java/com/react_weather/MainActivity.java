@@ -1,6 +1,11 @@
 package com.react_weather;
 
 import com.facebook.react.ReactActivity;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.AirMaps.AirPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.rt2zz.reactnativecontacts.ReactNativeContacts;
+import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.lwansbrough.RCTCamera.RCTCameraPackage;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
 import com.rt2zz.reactnativecontacts.ReactNativeContacts;
@@ -41,11 +46,11 @@ public class MainActivity extends ReactActivity {
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
-            new RCTCameraPackage(),
-            new ReactNativeContacts(),
-            new LinearGradientPackage(),
+            new VectorIconsPackage(),
             new AirPackage(),
-            new VectorIconsPackage()
+            new LinearGradientPackage(),
+            new ReactNativeContacts(),
+            new RCTCameraPackage()
         );
     }
 }
