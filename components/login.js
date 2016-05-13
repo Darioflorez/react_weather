@@ -7,41 +7,45 @@ import React, {
   StyleSheet,
 } from 'react-native';
 
-import {
-  LoginManager,
-} from 'react-native-fbsdk';
-
 import LoginForm from './loginForm'
 import LinearGradient from 'react-native-linear-gradient';
+import FacebookSDK from '../js/facebookSDK';
 
 export default class Login extends React.Component {
   constructor(props){
     super(props);
     this.state={};
     this._onLogin = this._onLogin.bind(this);
+
     this._onLoginWithFacebookSDK = this._onLoginWithFacebookSDK.bind(this);
+
+    this._onLoginSuccess = this._onLoginSuccess.bind(this);
   }
   _onLogin() {
     this.props.navigator.replace({id: 'home'});
   }
 
-  _onLoginWithFacebookSDK(){
-    LoginManager.logInWithReadPermissions(['public_profile'])
-    .then((result) =>{
-      if (result.isCancelled) {
-        alert('Login cancelled');
-      } else {
-        alert('Login success with permissions: '
-          +result.grantedPermissions.toString());
-          console.log("RESULT: ", result);
-          this.props.navigator.replace({id: 'home'});
+  _onLoginSuccess(response){
+    console.log(response);
+    this.props.navigator.push({
+      id: 'home',
+      passProps: {
+        user: response
       }
-    })
-    .catch((error) => {
-      console.log('Login fail with error: ' + error);
-      alert('Login fail with error: ' + error);
     });
   }
+
+  _onLoginWithFacebookSDK(){
+    FacebookSDK.login()
+      .then((result) =>{
+        console.log('login success: ', result);
+        FacebookSDK.getUserData(this._onLoginSuccess);
+      })
+      .catch((error) => {
+        alert('login fail: ' + error);
+      });
+  }
+
   render() {
     return (
       <LinearGradient colors={['#EF4DB6', '#5856D6']} style={{flex:1}}>

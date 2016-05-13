@@ -45,7 +45,7 @@ export default class Home extends Component {
   };
 
   componentDidMount(){
-
+    console.log("home: user logged in: ", this.props.user);
   }
 
 
@@ -122,7 +122,14 @@ export default class Home extends Component {
     var navigationView = (
 
       <ScrollView style={{flex: 1, backgroundColor: 'white',}}>
-      <View style={{height:height/3, backgroundColor:'black'}}></View>
+      <View style={{
+          height:height/3,
+          backgroundColor:'white',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+        <Text>{this.props.user.name}</Text>
+      </View>
       <MenuItem
         onPress={this._weatherSelected}
         title="Weather"

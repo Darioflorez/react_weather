@@ -44,7 +44,7 @@ export default class App extends React.Component {
       return (<Login navigator={navigator}/>);
     }
     if(route.id === 'home'){
-      return (<Home navigator={navigator}/>);
+      return (<Home navigator={navigator} {...route.passProps} />);
     }
     if(route.id === 'camera'){
       return (<CameraPage navigator={navigator}/>);
