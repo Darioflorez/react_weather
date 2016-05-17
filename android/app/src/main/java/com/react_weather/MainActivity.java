@@ -13,6 +13,8 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.List;
 
+import com.chart.*;
+
 public class MainActivity extends ReactActivity {
 
     /**
@@ -33,6 +35,16 @@ public class MainActivity extends ReactActivity {
         return BuildConfig.DEBUG;
     }
 
+    /*Here you can register your native UI
+    * */
+    /*@Override
+    public List<ViewManager> createViewManagers(
+            ReactApplicationContext reactContext) {
+        return Arrays.<ViewManager>asList(
+                new ReactImageManager()
+        );
+    }*/
+
     /**
      * A list of packages used by the app. If the app uses additional views
      * or modules besides the default ones, add more packages here.
@@ -45,7 +57,8 @@ public class MainActivity extends ReactActivity {
             new ReactNativeContacts(),
             new LinearGradientPackage(),
             new AirPackage(),
-            new VectorIconsPackage()
+            new VectorIconsPackage(),
+            new MPChartPackage()
         );
     }
 }
