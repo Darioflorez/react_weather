@@ -1,7 +1,7 @@
 'use-strict';
 
 export const colors = {
-  rowSeparator: '#C7C7CC',
+  rowSeparator: '#eeeeee',
   appBackground: 'white',
   icon: 'white',
 }
