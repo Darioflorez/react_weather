@@ -7,6 +7,7 @@ import React, {
   ListView,
   View,
   Text,
+  Platform,
 } from 'react-native';
 
 var Icon = require('react-native-vector-icons/Ionicons')
@@ -23,6 +24,9 @@ export default class SearchResult extends Component {
     this.props.resetList();
   }
   _renderRow(rowData, sectionID, rowID){
+    var arrow = Platform.os === 'ios' ?
+        <Icon name="ios-arrow-right" size={30} color="blue"/> : null;
+        
     return (
       <TouchableHighlight onPress={() => this._rowPress(rowData)} underlayColor={'#D1EEFC'} >
         <View style={{padding:10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end',borderBottomWidth: 1, borderBottomColor: '#C7C7CC'}}>
@@ -31,7 +35,7 @@ export default class SearchResult extends Component {
             <Text>{ rowData.country }</Text>
           </View>
           <View>
-            <Icon name="ios-arrow-right" size={30} color="blue"/>
+            {arrow}
           </View>
         </View>
       </TouchableHighlight>

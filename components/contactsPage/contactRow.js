@@ -7,6 +7,7 @@ import React, {
   Text,
   StyleSheet,
   TouchableOpacity,
+  Platform
 } from 'react-native';
 
 var Icon = require('react-native-vector-icons/Ionicons')
@@ -25,6 +26,8 @@ export default class ContactRow extends React.Component {
 
   // Ta bort arrow for android
   render() {
+    var arrow = Platform.os === 'ios' ? 
+      <Icon name="ios-arrow-right" size={28} color="#34AADC"/> : null;
     const rowData = this.props.rowData;
     const rowID = this.props.rowId;
     return (
@@ -33,7 +36,7 @@ export default class ContactRow extends React.Component {
           <Text style={styles.firstName}>{rowData.givenName}</Text>
           <Text style={styles.lastName}>{rowData.familyName}</Text>
         </View>
-        <Icon name="ios-arrow-right" size={28} color="#34AADC"/>
+          {arrow}
       </TouchableOpacity>
     );
   }
